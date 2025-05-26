@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Fields of Mistria - Início</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <header class="header-principal">
+        <h1>Guia Fields of Mistria</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="estacoes.html">
+                    <img src="images/icon_seasons.png" alt="Ícone Estações">
+                    <span>Colecionáveis por Estação</span>
+                </a>
+            </li>
+            <li>
+                <a href="museu.html">
+                    <img src="images/icon_museum.png" alt="Ícone Museu">
+                    <span>Museu</span>
+                </a>
+            </li>
+            <li>
+                <a href="moradores.html">
+                    <img src="images/icon_moradores.png" alt="Ícone Moradores">
+                    <span>Moradores</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <footer>
+        <p>Feito com ❤️ para fãs de Mistria!</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

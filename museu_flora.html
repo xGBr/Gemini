@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flora do Museu - Guia Fields of Mistria</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <header class="header-flora">
+        <a href="museu.html" class="back-button">‹</a>
+        <h1>🌿 Flora do Museu</h1>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <button class="tab-button active" onclick="mostrarConteudo('flora_primavera', this)">Primavera</button>
+            <button class="tab-button" onclick="mostrarConteudo('flora_verao', this)">Verão</button>
+            <button class="tab-button" onclick="mostrarConteudo('flora_outono', this)">Outono</button>
+            <button class="tab-button" onclick="mostrarConteudo('flora_inverno', this)">Inverno</button>
+            <button class="tab-button" onclick="mostrarConteudo('flora_todas_estacoes', this)">Todas Estações</button>
+        </div>
+
+        <div id="flora_primavera" class="tab-content active">
+            <h2 class="page-subtitle">Flora da Primavera</h2>
+            <div class="flora-season-content">
+
+                <div class="flora-subcategory-card">
+                    <h4>Colheita de Primavera</h4>
+                    <ul class="flora-item-list">
+                        <li class="flora-item">
+                            <img src="images/itens/Cabbage.png" alt="Repolho" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Repolho</span>
+                                <span class="item-seed-price">Semente: 70t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_repolho_primavera"> Entregue</label>
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Cherry.png" alt="Cereja" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Cereja</span>
+                                <span class="item-seed-price">Muda: 400t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_cereja_primavera"> Entregue</label>
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Potato.png" alt="Batata" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Batata</span>
+                                <span class="item-seed-price">Semente: 40t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_batata_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Strawberry.png" alt="Morango" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Morango</span>
+                                <span class="item-seed-price">Semente: 300t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_morango_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Turnip.png" alt="Nabo" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Nabo</span>
+                                <span class="item-seed-price">Semente: 40t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_nabo_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flora-subcategory-card">
+                    <h4>Flores da Primavera</h4>
+                    <ul class="flora-item-list">
+                        <li class="flora-item">
+                            <img src="images/itens/daffodil.png" alt="Daffodil" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Narciso</span>
+                                <span class="item-location">Localização: Fazenda Água Doce, Os Estreitos</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_narciso_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Dandelion.png" alt="Dandelion" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Dente-de-leão</span>
+                                <span class="item-location">Localização: Mistria, Os Estreitos, Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_dente_de_leao_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Lilac.png" alt="Lilac" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Lilás</span>
+                                <span class="item-location">Localização: A Estrada ao Leste, Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_lilas_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Snowdrop_anemone.png" alt="Snowdrop Anemone" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Anêmona de floco de neve</span>
+                                <span class="item-location">Localização: Ruínas do Oeste, A Praia</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_anemona_de_floco_de_neve_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Tulip.png" alt="Tulip" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Tulipa</span>
+                                <span class="item-location">Localização: A Estrada ao Leste, Os Estreitos, Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_tulipa_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flora-subcategory-card">
+                    <h4>Forragem da Primavera</h4>
+                    <ul class="flora-item-list">
+                        <li class="flora-item">
+                            <img src="images/itens/Fennel.png" alt="Fennel" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Funcho</span>
+                                <span class="item-location">Localização: Os Estreitos, A Estrada ao Leste</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_funcho_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Fiddlehead.png" alt="Fiddlehead" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Samambaia</span>
+                                <span class="item-location">Localização: Os Estreitos, Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_samambaia_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Morel_mushroom.png" alt="Morel Mushroom" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Cogumelo Morel</span>
+                                <span class="item-location">Localização: A Estrada ao Leste, Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_cogumelo_morel_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Nettle.png" alt="Nettle" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Urtiga</span>
+                                <span class="item-location">Localização: Fazenda Água Doce</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_urtiga_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                        <li class="flora-item">
+                            <img src="images/itens/Wild_leek.png" alt="Wild Leek" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Alho-poró Silvestre</span>
+                                <span class="item-location">Localização: Mistria, Os Estreitos, A Estrada ao Leste</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_alho_poro_silvestre_primavera"> Entregue</label> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="flora_verao" class="tab-content">
+            <h2 class="page-subtitle">Flora do Verão</h2>
+            <div class="flora-season-content">
+                <div class="flora-subcategory-card">
+                    <h4>Colheita de Verão</h4>
+                    <ul class="flora-item-list">
+                        {/* Exemplo de item de colheita para Verão */}
+                        <li class="flora-item">
+                            <img src="images/itens/placeholder_cultivo_verao.png" alt="Colheita Verão" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Colheita Exemplo Verão</span>
+                                <span class="item-seed-price">Semente: 0t</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_colheita_exemplo_verao"> Entregue</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Flores de Verão</h4>
+                    <ul class="flora-item-list">
+                        {/* Exemplo de flor para Verão */}
+                        <li class="flora-item">
+                            <img src="images/itens/placeholder_flor_verao.png" alt="Flor Verão" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Flor Exemplo Verão</span>
+                                <span class="item-location">Localização: Exemplo</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_flor_exemplo_verao"> Entregue</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Forragem de Verão</h4>
+                    <ul class="flora-item-list">
+                        {/* Exemplo de coleta para Verão */}
+                         <li class="flora-item">
+                            <img src="images/itens/placeholder_forragem_verao.png" alt="Forragem Verão" class="item-icon">
+                            <div class="item-details-flora">
+                                <span class="item-name">Forragem Exemplo Verão</span>
+                                <span class="item-location">Localização: Exemplo</span>
+                            </div>
+                            <div class="item-donate">
+                                <label><input type="checkbox" name="donated_forragem_exemplo_verao"> Entregue</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="flora_outono" class="tab-content">
+            <h2 class="page-subtitle">Flora do Outono</h2>
+            <div class="flora-season-content">
+                 <div class="flora-subcategory-card">
+                    <h4>Colheita de Outono</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Flores de Outono</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Forragem de Outono</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="flora_inverno" class="tab-content">
+            <h2 class="page-subtitle">Flora do Inverno</h2>
+            <div class="flora-season-content">
+                <div class="flora-subcategory-card">
+                    <h4>Colheita de Inverno</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Flores de Inverno</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Forragem de Inverno</h4>
+                    <ul class="flora-item-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="flora_todas_estacoes" class="tab-content">
+            <h2 class="page-subtitle">Flora de Todas Estações / Outros</h2>
+            <div class="flora-season-content">
+                <div class="flora-subcategory-card">
+                    <h4>Colheita (Todas Estações)</h4>
+                    <ul class="flora-item-list">
+                        {/* Adicione itens de colheita de todas as estações aqui */}
+                    </ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Flores (Todas Estações)</h4>
+                    <ul class="flora-item-list">
+                        {/* Adicione itens de flores de todas as estações aqui */}
+                    </ul>
+                </div>
+                <div class="flora-subcategory-card">
+                    <h4>Forragem (Todas Estações)</h4>
+                    <ul class="flora-item-list">
+                        {/* Adicione itens de coleta de todas as estações aqui */}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Guia Fields of Mistria</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
