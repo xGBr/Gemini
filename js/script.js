@@ -126,3 +126,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+/**
+ * Revela um personagem spoiler na miniatura ou navega para ele se já revelado.
+ * @param {HTMLElement} element - O elemento da miniatura do personagem que foi clicado.
+ */
+function revelarSpoiler(element) {
+    const isRevealed = element.dataset.revealed === "true";
+
+    if (!isRevealed) {
+        // Primeiro clique: Revelar
+        const portraitSrc = element.dataset.portraitSrc;
+        const iconSrc = element.dataset.iconSrc; // Pega o caminho do ícone REAL do personagem
+        const charName = element.dataset.name;
+
+        const portraitImg = element.querySelector('.miniature-portrait');
+        const nameArea = element.querySelector('.miniature-name-area');
+        const nameSpan = nameArea.querySelector('.miniature-name');
+        const iconImg = nameArea.querySelector('.miniature-name-icon'); // Seleciona o <img> do ícone
+        
+        // Atualiza o retrato (remove blur, etc.)
+        if (portraitImg) {
+            portraitImg.classList.remove('blurred');
+            portraitImg.alt = 'Retrato de ' + charName;
+        }
+        
+        // Atualiza a área do nome
+        if (nameSpan) {
+            nameSpan.textContent = charName;
+            nameSpan.classList.remove('spoiler-text'); 
+        }
+        
+        if (iconImg) {
+            iconImg.src = iconSrc; // <<<---- AQUI O ÍCONE REAL É CARREGADO NO LUGAR DO PLACEHOLDER
+            iconImg.alt = ''; 
+            iconImg.classList.remove('is-spoiler-icon'); 
+        }
+        
+        element.dataset.revealed = "true"; 
+    } else {
+        // Segundo clique: Navegar
+        const charId = element.dataset.charId;
+        const tabId = element.dataset.tabId;
+        irParaPersonagem(charId, tabId);
+    }
+}
+
+// Certifique-se que a função irParaPersonagem já existe no seu script.js
+// function irParaPersonagem(personagemId, abaId) { ... }

@@ -6,7 +6,8 @@ body {
     color: #333;
 }
 
-/* === CABEÇALHO (HEADER) === */
+/* === LAYOUT BÁSICO (HEADER, MAIN, NAV, FOOTER) === */
+/* --- Cabeçalho (Header) --- */
 /* Estilo base para todos os headers */
 header {
     background-color: #5D4037; /* Cor de fundo padrão (fallback para banners) */
@@ -16,7 +17,7 @@ header {
     align-items: center;
 }
 
-/* --- Estilos Específicos para Headers com Banner --- */
+/* Estilos Específicos para Headers com Banner */
 header[class^="header-"] { /* Propriedades comuns para headers com banner */
     background-size: cover;
     background-position: center center;
@@ -56,7 +57,7 @@ header.header-flora {
     min-height: 120px;
 }
 
-/* Título H1 genérico dentro do header (para páginas com botão de voltar) */
+/* Título H1 genérico dentro do header */
 header h1 {
     flex-grow: 1;
     text-align: center;
@@ -65,9 +66,9 @@ header h1 {
     line-height: 1.2;
 }
 
-/* Estilo do Título (H1) sobre os Banners */
+/* Título (H1) sobre os Banners */
 header[class^="header-"] h1 {
-    font-size: 2.2em; /* Sobrescreve o tamanho para H1 em banners */
+    font-size: 2.2em; 
     font-weight: bold;
     color: white; 
     text-shadow:
@@ -112,9 +113,7 @@ header .back-button:active {
     transform: scale(0.95);
 }
 
-
-/* === NAVEGAÇÃO (NAV) === */
-/* Estilos comuns para Navegação Principal e de Categorias */
+/* --- Navegação Principal e de Categorias (Nav) --- */
 nav ul,
 .category-nav ul {
     list-style-type: none;
@@ -128,7 +127,7 @@ nav ul li,
 }
 
 nav ul li a,
-.category-nav ul li a {
+.category-nav ul li a { /* Estilos comuns para botões de navegação */
     display: flex;
     align-items: center;
     background-color: #32A89E;
@@ -154,7 +153,7 @@ nav ul li a { /* Navegação Principal */
     margin: 5px 0;
 }
 
-/* Efeitos Hover e Active comuns */
+/* Efeitos Hover e Active comuns para navegação */
 nav ul li a:hover,
 .category-nav ul li a:hover {
     background-color: #2AA095;
@@ -194,15 +193,13 @@ nav ul li a span,
     font-size: 1.1em;
 }
 
-
-/* === CONTEÚDO PRINCIPAL (MAIN) === */
+/* --- Conteúdo Principal (Main) --- */
 main {
     padding: 20px;
     padding-bottom: 80px; /* Espaço para o rodapé fixo */
 }
 
-
-/* === RODAPÉ (FOOTER) === */
+/* --- Rodapé (Footer) --- */
 footer {
     text-align: center;
     padding: 10px;
@@ -280,9 +277,9 @@ footer {
 }
 
 
-/* === ESTILOS ESPECÍFICOS POR PÁGINA/SEÇÃO === */
+/* === ESTILOS ESPECÍFICOS POR SEÇÃO === */
 
-/* --- Conteúdo da Página de Estações --- */
+/* --- Seção Estações --- */
 .conteudo-estacao { 
     border: 1px solid #3DCFCA;
     padding: 15px;
@@ -295,7 +292,7 @@ footer {
     padding-left: 20px;
 }
 
-/* --- Página de Personagens --- */
+/* --- Seção Personagens (Moradores) --- */
 .character-card {
     background-color: #ffffff;
     border-radius: 0;
@@ -317,11 +314,15 @@ footer {
 }
 
 .character-name-icon { 
-    width: 44px; /* Ícone 44x44 ao lado do nome no card */
+    width: 44px; 
     height: 44px;
     object-fit: contain;
     margin-right: 10px; 
     flex-shrink: 0;
+}
+
+.character-name-text { 
+    /* Estilos para o texto do nome, se necessário */
 }
 
 .character-info {
@@ -401,7 +402,7 @@ footer {
     padding: 2px;
 }
 
-/* Aba "Todos Personagens" - Miniaturas (NOVO LAYOUT) */
+/* Miniaturas na aba "Todos Personagens" */
 .miniature-grid {
     display: flex;
     flex-wrap: wrap;
@@ -444,11 +445,11 @@ footer {
     align-items: center; 
     justify-content: center; 
     margin-top: 4px; 
-    width: 100%; /* Para que o conteúdo interno possa ser centralizado corretamente */
+    width: 100%; 
 }
 
-.miniature-name-icon { /* Ícone 44x44 (ou 30x30) ao lado do nome na miniatura */
-    width: 30px;  /* Ajustado para melhor proporção com o nome */
+.miniature-name-icon { /* Ícone pequeno ao lado do nome na miniatura */
+    width: 30px;  
     height: 30px; 
     object-fit: contain;
     margin-right: 6px; 
@@ -464,10 +465,31 @@ footer {
 /* Destaque para personagem ao rolar via JS */
 .highlighted-character {
     outline: 3px solid #FF8C00;
-    transition: outline 0.5s ease-in-out;
+    /* box-shadow: 0 0 15px 5px #FFD700; /* Alternativa de sombra */
+    transition: outline 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
-/* --- Estilos para Página Flora do Museu --- */
+/* Estilos para Elementos Spoiler nas Miniaturas */
+.spoiler-miniature .miniature-portrait.blurred {
+    filter: blur(5px); 
+    transition: filter 0.3s ease-in-out;
+}
+
+.spoiler-miniature[data-revealed="true"] .miniature-portrait.blurred { /* Estilo para quando revelado */
+    filter: blur(0);
+}
+
+.miniature-name-area .spoiler-text { /* Texto "SPOILER" */
+    color: #FF8C00; 
+    font-style: italic;
+}
+
+.miniature-name-icon.is-spoiler-icon { /* Para o ícone genérico de spoiler */
+    /* Estilos específicos aqui se necessário, ex: um filtro para torná-lo cinza */
+}
+
+
+/* --- Página Flora do Museu --- */
 .flora-season-content {
     display: flex;
     flex-wrap: wrap;
@@ -560,39 +582,36 @@ footer {
     cursor: pointer;
 }
 
-/* === BOTÃO FLUTUANTE "HOME" === */
+/* === ELEMENTOS DE UI INTERATIVOS (EX: BOTÃO FLUTUANTE) === */
 .floating-home-button {
-    position: fixed;            /* Mantém o botão fixo na tela durante a rolagem */
-    bottom: 20px;               /* Distância da parte inferior da tela */
-    right: 20px;                /* Distância da parte direita da tela */
-    width: 56px;                /* Largura do botão */
-    height: 56px;               /* Altura do botão */
-    background-color: #29CC8C;  /* Cor de fundo do botão (o verde do seu body ou o da imagem) */
-    color: white;               /* Cor do ícone (se fosse um caractere de fonte) */
-    border-radius: 50%;         /* Torna o botão circular */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25); /* Sombra para efeito flutuante */
+    position: fixed;            
+    bottom: 20px;               
+    right: 20px;                
+    width: 56px;                
+    height: 56px;               
+    background-color: #74BEE5;  
+    color: white;               
+    border-radius: 50%;         
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25); 
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    z-index: 990;               /* Garante que fique acima da maioria dos conteúdos, mas abaixo de modais/popups se houver */
+    z-index: 990;               
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .floating-home-button img {
-    width: 28px;                /* Tamanho do ícone dentro do botão */
+    width: 28px;                
     height: 28px;
-    /* Para ícones PNG brancos ou de cor clara, esta linha abaixo pode não ser necessária. */
-    /* Se o seu ícone PNG for preto e você quiser ele branco, pode tentar: */
-    /* filter: brightness(0) invert(1); */
 }
 
 .floating-home-button:hover {
-    background-color: #24B87A; /* Tom um pouco mais escuro para o hover */
-    transform: scale(1.1);      /* Leve aumento no hover */
+    background-color: #24B87A; 
+    transform: scale(1.1);      
 }
 
 .floating-home-button:active {
-    background-color: #1F9F6D; /* Tom ainda mais escuro para o clique */
-    transform: scale(1);        /* Retorna ao tamanho normal ao clicar */
+    background-color: #1F9F6D; 
+    transform: scale(1);        
 }
