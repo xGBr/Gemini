@@ -334,29 +334,31 @@ footer {
 .character-identity {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 120px;
+    /* align-items: center; /* Mudar isso pode ajudar */
+    width: 120px; 
     margin-right: 20px;
     flex-shrink: 0;
+    /* Adicionar uma altura fixa ou min-height se necessário para todo o bloco */
+    /* height: 150px; /* Exemplo */
 }
 
 .character-avatar {
     width: 100px;
     height: 100px;
     object-fit: contain;
-    border-radius: 0;
-    border: 2px solid #2AA095;
-    background-color: #eef7f6;
-    margin-bottom: 8px;
-    flex-shrink: 0;
+    border-radius: 0; 
+    border: 2px solid #2AA095; 
+    background-color: #eef7f6; 
+    /* margin-bottom: 8px; /* Remover ou ajustar */
 }
 
 .character-birthday {
     font-size: 0.85em;
     color: #1C635D;
     text-align: center;
-    margin-top: 0;
+    margin-top: 4px; /* Adicionar um pequeno espaço aqui */
     line-height: 1.3;
+    width: 100%; /* Para que o text-align:center funcione bem */
 }
 
 .gift-preferences {
