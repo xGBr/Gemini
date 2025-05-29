@@ -24,7 +24,7 @@ function mostrarConteudo(idConteudo, elementoBotao) {
             currentElement = containerDeTabs;
         }
     }
-    
+
     // Esconde todos os outros conteúdos de abas dentro do mesmo container
     if (containerDeTabs) {
         containerDeTabs.querySelectorAll('.tab-content').forEach(div => {
@@ -67,7 +67,7 @@ function irParaPersonagem(personagemId, abaId) {
         mostrarConteudo(abaId, botaoAlvo);
     } else {
         console.error('Botão da aba não encontrado para o ID:', abaId);
-        return; 
+        return;
     }
 
     // 2. Scroll para o personagem após a aba ser exibida
@@ -76,7 +76,7 @@ function irParaPersonagem(personagemId, abaId) {
         const elementoPersonagem = document.getElementById(personagemId);
         if (elementoPersonagem) {
             elementoPersonagem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
+
             // Opcional: Adicionar um destaque temporário
             elementoPersonagem.classList.add('highlighted-character');
             setTimeout(() => {
@@ -92,10 +92,10 @@ function irParaPersonagem(personagemId, abaId) {
 // esteja ativa ao carregar a página.
 document.addEventListener('DOMContentLoaded', () => {
     const todosOsConjuntosDeTabs = document.querySelectorAll('.tabs');
-    
+
     todosOsConjuntosDeTabs.forEach(tabContainer => {
         let abaAtivaNoHtml = tabContainer.querySelector('.tab-button.active');
-        
+
         if (abaAtivaNoHtml) {
             // Se uma aba já está marcada como ativa no HTML, apenas garante que seu conteúdo também esteja ativo.
             // A função mostrarConteudo já lida com isso se chamada, mas aqui garantimos o estado inicial.
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // A chamada inicial de mostrarConteudo(idConteudoAtivo, abaAtivaNoHtml) poderia ser feita aqui
                 // mas para evitar chamadas múltiplas, apenas garantimos a classe no conteúdo.
                 let containerDeConteudo = abaAtivaNoHtml.closest('main') || document.body; // Encontra o container
-                 if (containerDeConteudo) {
+                if (containerDeConteudo) {
                     containerDeConteudo.querySelectorAll('.tab-content').forEach(div => {
                         div.classList.remove('active');
                     });
@@ -144,26 +144,26 @@ function revelarSpoiler(element) {
         const nameArea = element.querySelector('.miniature-name-area');
         const nameSpan = nameArea.querySelector('.miniature-name');
         const iconImg = nameArea.querySelector('.miniature-name-icon'); // Seleciona o <img> do ícone
-        
+
         // Atualiza o retrato (remove blur, etc.)
         if (portraitImg) {
             portraitImg.classList.remove('blurred');
             portraitImg.alt = 'Retrato de ' + charName;
         }
-        
+
         // Atualiza a área do nome
         if (nameSpan) {
             nameSpan.textContent = charName;
-            nameSpan.classList.remove('spoiler-text'); 
+            nameSpan.classList.remove('spoiler-text');
         }
-        
+
         if (iconImg) {
             iconImg.src = iconSrc; // <<<---- AQUI O ÍCONE REAL É CARREGADO NO LUGAR DO PLACEHOLDER
-            iconImg.alt = ''; 
-            iconImg.classList.remove('is-spoiler-icon'); 
+            iconImg.alt = '';
+            iconImg.classList.remove('is-spoiler-icon');
         }
-        
-        element.dataset.revealed = "true"; 
+
+        element.dataset.revealed = "true";
     } else {
         // Segundo clique: Navegar
         const charId = element.dataset.charId;
@@ -174,3 +174,55 @@ function revelarSpoiler(element) {
 
 // Certifique-se que a função irParaPersonagem já existe no seu script.js
 // function irParaPersonagem(personagemId, abaId) { ... }
+
+// DENTRO DO SEU ARQUIVO SCRIPT.JS
+
+// (Sua função mostrarConteudo e irParaPersonagem devem estar aqui)
+
+// DENTRO DO SEU ARQUIVO SCRIPT.JS
+// (Suas funções mostrarConteudo e irParaPersonagem devem estar aqui)
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (seu código existente para ativar a primeira aba em outras páginas) ...
+
+    function popularFloraTodasEstacoes() {
+        const abasEstacoesIds = ['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
+        const agregadosDestino = {
+            Crop: document.querySelector('#all_seasons_crop .flora-item-list'),
+            Flower: document.querySelector('#all_seasons_flower .flora-item-list'),
+            Forageable: document.querySelector('#all_seasons_forageable .flora-item-list')
+        };
+
+        if (!agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
+            return; 
+        }
+        
+        for (const key in agregadosDestino) {
+            agregadosDestino[key].innerHTML = ''; // Limpa listas
+        }
+
+        abasEstacoesIds.forEach(idAba => {
+            const abaConteudo = document.getElementById(idAba);
+            if (abaConteudo) {
+                const cardsSubcategoria = abaConteudo.querySelectorAll('.flora-subcategory-card');
+                cardsSubcategoria.forEach(card => {
+                    const listaItens = card.querySelector('.flora-item-list');
+                    const tipoCategoria = listaItens ? listaItens.dataset.category : null; // Usa o data-category
+
+                    if (tipoCategoria && agregadosDestino[tipoCategoria]) {
+                        const itens = listaItens.querySelectorAll('.flora-item');
+                        itens.forEach(item => {
+                            const itemClonado = item.cloneNode(true);
+                            agregadosDestino[tipoCategoria].appendChild(itemClonado);
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    // Chama a função para popular se estivermos na página correta
+    if (document.getElementById('all_seasons_crop') && document.getElementById('all_seasons_flower') && document.getElementById('all_seasons_forageable')) {
+        popularFloraTodasEstacoes();
+    }
+});

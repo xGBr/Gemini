@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estações - Guia Fields of Mistria</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <header>
-        <a href="index.html"class="back-button"> ‹ </a>
-        <h1>Colecionáveis por Estação</h1>
+      <a href="index.html" class="back-button"> ‹ </a>
+      <h1>Colecionáveis por Estação</h1>
     </header>
     <main>
-        <div class="tabs">
-            <button onclick="mostrarConteudo('primavera')">Primavera</button>
-            <button onclick="mostrarConteudo('verao')">Verão</button>
-            <button onclick="mostrarConteudo('outono')">Outono</button>
-            <button onclick="mostrarConteudo('inverno')">Inverno</button>
-        </div>
+      <div class="tabs">
+        <button onclick="mostrarConteudo('primavera')">Primavera</button>
+        <button onclick="mostrarConteudo('verao')">Verão</button>
+        <button onclick="mostrarConteudo('outono')">Outono</button>
+        <button onclick="mostrarConteudo('inverno')">Inverno</button>
+      </div>
 
-        <div id="primavera" class="conteudo-estacao">
-            <h2>Primavera</h2>
-            <ul>
-                <li>Item 1 da Primavera (Ex: Flor da Manhã)</li>
-                <li>Item 2 da Primavera (Ex: Peixe-Sol da Primavera)</li>
-                </ul>
-        </div>
+      <div id="primavera" class="conteudo-estacao">
+        <h2>Primavera</h2>
+        <ul>
+          <li>Item 1 da Primavera (Ex: Flor da Manhã)</li>
+          <li>Item 2 da Primavera (Ex: Peixe-Sol da Primavera)</li>
+        </ul>
+      </div>
 
-        <div id="verao" class="conteudo-estacao" style="display:none;">
-            <h2>Verão</h2>
-            <ul>
-                <li>Item 1 do Verão</li>
-                </ul>
-        </div>
-        </main>
+      <div id="verao" class="conteudo-estacao" style="display: none">
+        <h2>Verão</h2>
+        <ul>
+          <li>Item 1 do Verão</li>
+        </ul>
+      </div>
+    </main>
     <script>
-        function mostrarConteudo(estacaoId) {
-            // Esconde todos os conteúdos
-            document.querySelectorAll('.conteudo-estacao').forEach(div => div.style.display = 'none');
-            // Mostra o conteúdo da estação clicada
-            document.getElementById(estacaoId).style.display = 'block';
-        }
-        // Mostrar a primeira aba por padrão
-        document.addEventListener('DOMContentLoaded', () => {
-            mostrarConteudo('primavera');
-        });
+      function mostrarConteudo(estacaoId) {
+        // Esconde todos os conteúdos
+        document.querySelectorAll(".conteudo-estacao").forEach((div) => (div.style.display = "none"));
+        // Mostra o conteúdo da estação clicada
+        document.getElementById(estacaoId).style.display = "block";
+      }
+      // Mostrar a primeira aba por padrão
+      document.addEventListener("DOMContentLoaded", () => {
+        mostrarConteudo("primavera");
+      });
     </script>
-</body>
+  </body>
 </html>
