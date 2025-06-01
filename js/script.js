@@ -226,3 +226,146 @@ document.addEventListener('DOMContentLoaded', () => {
         popularFloraTodasEstacoes();
     }
 });
+// DENTRO DO SEU ARQUIVO SCRIPT.JS
+
+// Sua função mostrarConteudo() deve estar aqui:
+function mostrarConteudo(idConteudo, elementoBotao) {
+    let containerDeTabs=elementoBotao.closest('main') || document.body;
+
+    containerDeTabs.querySelectorAll('.tab-content').forEach(div=> {
+            div.classList.remove('active');
+        });
+
+    let paiDoBotao=elementoBotao.closest('.tabs');
+
+    if (paiDoBotao) {
+        paiDoBotao.querySelectorAll('.tab-button').forEach(btn=> {
+                btn.classList.remove('active');
+            });
+    }
+
+    const conteudoAlvo=document.getElementById(idConteudo);
+
+    if (conteudoAlvo) {
+        conteudoAlvo.classList.add('active');
+    }
+
+    elementoBotao.classList.add('active');
+}
+
+// Sua função irParaPersonagem() (se estiver usando em outras páginas) pode estar aqui
+// Sua função revelarSpoiler() (se estiver usando em outras páginas) pode estar aqui
+
+
+document.addEventListener('DOMContentLoaded', ()=> {
+        // Ativa a primeira aba em qualquer página que tenha o sistema de abas
+        const todosOsConjuntosDeTabs=document.querySelectorAll('.tabs');
+
+        todosOsConjuntosDeTabs.forEach(tabContainer=> {
+                let abaAtivaNoHtml=tabContainer.querySelector('.tab-button.active');
+
+                if ( !abaAtivaNoHtml) {
+                    // Se nenhuma aba estiver marcada como ativa no HTML
+                    const primeiroBotao=tabContainer.querySelector('.tab-button');
+
+                    if (primeiroBotao) {
+                        // Extrai o ID do conteúdo do onclick do primeiro botão
+                        const onclickAttr=primeiroBotao.getAttribute('onclick');
+
+                        if (onclickAttr) {
+                            const match=onclickAttr.match(/'([^']+)'/);
+ if (match && match[1]) {
+                                const primeiroConteudoId=match[1];
+                                mostrarConteudo(primeiroConteudoId, primeiroBotao);
+                            }
+                        }
+                    }
+                }
+
+                else {
+                    // Se já houver uma aba ativa no HTML, garante que seu conteúdo também esteja
+                    const idConteudoAtivo=abaAtivaNoHtml.getAttribute('onclick').match(/'([^']+)'/)[1];
+ const elementoConteudoAtivo=document.getElementById(idConteudoAtivo);
+
+                    if (elementoConteudoAtivo) {
+                        // Garante que todos os outros estejam inativos antes de ativar este
+                        let containerDeConteudo=abaAtivaNoHtml.closest('main') || document.body;
+
+                        if (containerDeConteudo) {
+                            containerDeConteudo.querySelectorAll('.tab-content').forEach(div=> {
+                                    if (div.id !==idConteudoAtivo) {
+                                        div.classList.remove('active');
+                                    }
+                                });
+                        }
+
+                        elementoConteudoAtivo.classList.add('active');
+                    }
+                }
+            });
+
+        // Função para popular a aba "All Seasons" na página museu_flora.html
+        function popularFloraTodasEstacoes() {
+            const abasEstacoesIds=['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
+
+            const agregadosDestino= {
+                Crop: document.querySelector('#all_seasons_crop .item-list'),
+                Flower: document.querySelector('#all_seasons_flower .item-list'),
+                Forageable: document.querySelector('#all_seasons_forageable .item-list')
+            }
+
+            ;
+
+            // Verifica se estamos na página museu_flora.html e se os elementos de destino existem
+            if ( !agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
+                return;
+            }
+
+            for (const key in agregadosDestino) {
+                if (agregadosDestino[key]) {
+                    agregadosDestino[key].innerHTML=''; // Limpa listas agregadas
+                }
+            }
+
+            abasEstacoesIds.forEach(idAba=> {
+                    const abaConteudo=document.getElementById(idAba);
+
+                    if (abaConteudo) {
+                        const cardsSubcategoria=abaConteudo.querySelectorAll('.item-subcategory-card');
+
+                        cardsSubcategoria.forEach(card=> {
+                                const listaItensOriginal=card.querySelector('.item-list');
+
+                                if (listaItensOriginal) {
+                                    const tipoCategoria=listaItensOriginal.dataset.category; // Crop, Flower, Forageable
+
+                                    if (tipoCategoria && agregadosDestino[tipoCategoria]) {
+                                        const itens=listaItensOriginal.querySelectorAll('.list-item-entry');
+
+                                        itens.forEach(item=> {
+                                                const itemClonado=item.cloneNode(true);
+                                                // Opcional: Adicionar indicador da estação original
+                                                // const nomeItemSpan = itemClonado.querySelector('.item-name');
+                                                // if (nomeItemSpan) {
+                                                //    let estacaoOriginalTexto = idAba.replace('flora_', ''); 
+                                                //    estacaoOriginalTexto = estacaoOriginalTexto.charAt(0).toUpperCase() + estacaoOriginalTexto.slice(1);
+                                                //    const estacaoSpan = document.createElement('span');
+                                                //    estacaoSpan.textContent = ` (${estacaoOriginalTexto})`;
+                                                //    estacaoSpan.style.fontSize = "0.8em";
+                                                //    estacaoSpan.style.fontStyle = "italic";
+                                                //    nomeItemSpan.appendChild(estacaoSpan);
+                                                // }
+                                                agregadosDestino[tipoCategoria].appendChild(itemClonado);
+                                            });
+                                    }
+                                }
+                            });
+                    }
+                });
+        }
+
+        // Chama a função para popular se estivermos na página correta (flora_all_seasons existe)
+        if (document.getElementById('flora_all_seasons')) {
+            popularFloraTodasEstacoes();
+        }
+    });
