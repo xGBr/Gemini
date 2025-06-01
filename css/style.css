@@ -828,3 +828,95 @@ footer {
     background-color: #4A90B6;
     transform: scale(1);
 }
+
+/* === ESTILOS ESPECÍFICOS POR SEÇÃO === */
+/* ... (outros estilos) ... */
+
+/* --- Seção Peixes do Museu (Layout de Tabela) --- */
+/* Reutilize .item-subcategory-card e h4 se a aparência do card for a mesma */
+
+/* === Correções Otimizadas para a fish-table === */
+
+.fish-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    border: 1px solid #257F78;
+    background-color: #fff;
+    table-layout: fixed; /* Controla quebra e largura */
+}
+
+.fish-table thead th,
+.fish-table tbody td {
+    padding: 8px 10px;
+    font-size: 0.85em;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px dotted #d1d1d1;
+    vertical-align: middle;
+    text-align: left;
+    word-break: break-word; /* Evita quebrar layout */
+}
+
+.fish-table thead th:last-child,
+.fish-table tbody td:last-child {
+    border-right: none;
+}
+
+.fish-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Colunas com largura fixa */
+.fish-table th:nth-child(1), .fish-table td:nth-child(1) { width: 55px; text-align: center; } /* Photo */
+.fish-table th:nth-child(2), .fish-table td:nth-child(2) { width: 120px; } /* Name */
+.fish-table th:nth-child(3), .fish-table td:nth-child(3) { width: 100px; } /* Weather */
+.fish-table th:nth-child(4), .fish-table td:nth-child(4) { width: 75px; text-align: center; } /* Rarity */
+.fish-table th:nth-child(5), .fish-table td:nth-child(5) { width: 75px; text-align: center; } /* Size */
+.fish-table th:nth-child(6), .fish-table td:nth-child(6) { width: 150px; } /* Appearance */
+.fish-table th:nth-child(7), .fish-table td:nth-child(7) { width: 85px; text-align: center; } /* Donated */
+
+/* Ícone da imagem do peixe */
+.fish-table .item-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ícones dentro das células, como clima ou aparência */
+.fish-table .icon-text-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+
+/* Checkbox centralizado na coluna Donated */
+.fish-table .item-donate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fish-table .item-donate label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.fish-table .item-donate input[type="checkbox"] {
+    transform: scale(1.1);
+    margin-right: 5px;
+}
+
+/* Ícones visuais da aparência (Appearance) */
+.fish-table .appearance-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 4px;
+}
