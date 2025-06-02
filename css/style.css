@@ -117,6 +117,7 @@ header .back-button:active {
     background-color: #1F9F6D;
     transform: scale(0.95);
 }
+
 /* --------------------------------------------------------------------------
    2.2 Navegação (Nav e Category Nav)
    -------------------------------------------------------------------------- */
@@ -288,7 +289,6 @@ footer {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -391,7 +391,6 @@ footer {
 }
 
 .inline-icon {
-    /* Ícones pequenos (Estação, Horário, Tempo) em listas ou tabelas */
     width: 18px;
     height: 18px;
     vertical-align: middle;
@@ -507,7 +506,6 @@ footer {
 }
 
 .gift-item-icon {
-    /* Usado em Moradores para presentes */
     width: 32px;
     height: 32px;
     object-fit: contain;
@@ -592,10 +590,6 @@ footer {
     font-style: italic;
 }
 
-.miniature-name-icon.is-spoiler-icon {
-    /* Estilos para ícone genérico de spoiler, se necessário */
-}
-
 .highlighted-character {
     outline: 3px solid #FF8C00;
     transition: outline 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
@@ -606,7 +600,6 @@ footer {
    4.3 Seção Museu Insetos (Layout de Tabela)
    -------------------------------------------------------------------------- */
 .insect-subcategory-card {
-    /* Se precisar de estilos diferentes de .item-subcategory-card */
     background-color: #fbfbfb;
     border-radius: 0;
     border: 2px solid #257F78;
@@ -660,7 +653,7 @@ footer {
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px dotted #d1d1d1;
     font-size: 0.9em;
-    vertical-align: Center;
+    vertical-align: center;
     text-align: left;
     word-wrap: break-word;
 }
@@ -680,57 +673,40 @@ footer {
 /* Larguras das Colunas da Tabela de Insetos */
 .insect-table th:nth-child(1),
 .insect-table td:nth-child(1) {
-    width: 60px;
+    width: 55px;
     text-align: center;
 }
-
-/* Photo */
 .insect-table th:nth-child(2),
 .insect-table td:nth-child(2) {
-    width: 120px;
-}
-
-/* Name */
-.insect-table th:nth-child(3),
-.insect-table td:nth-child(3) {
-    width: 150px;
-}
-
-/* Location */
-.insect-table th:nth-child(4),
-.insect-table td:nth-child(4) {
-    width: 150px;
-}
-
-/* Season(s) */
-.insect-table th:nth-child(5),
-.insect-table td:nth-child(5) {
     width: 110px;
 }
-
-/* Time - ajustado */
+.insect-table th:nth-child(3),
+.insect-table td:nth-child(3) {
+    width: 130px;
+}
+.insect-table th:nth-child(4),
+.insect-table td:nth-child(4) {
+    width: 140px;
+}
+.insect-table th:nth-child(5),
+.insect-table td:nth-child(5) {
+    width: 100px;
+}
 .insect-table th:nth-child(6),
 .insect-table td:nth-child(6) {
-    min-width: 140px;
+    width: 120px;
 }
-
-/* Weather */
 .insect-table th:nth-child(7),
 .insect-table td:nth-child(7) {
-    width: 80px;
+    width: 70px;
 }
-
-/* Rarity */
 .insect-table th:nth-child(8),
 .insect-table td:nth-child(8) {
-    width: 90px;
+    width: 85px;
     text-align: center;
 }
 
-/* Donated */
-
 .insect-table .item-icon {
-    /* Ícone do inseto na tabela (Photo) */
     width: 48px;
     height: 48px;
     object-fit: contain;
@@ -741,54 +717,19 @@ footer {
     margin: 0 auto;
 }
 
-/* Larguras das Colunas da Tabela de Insetos - AJUSTADAS */
-.insect-table th:nth-child(1), .insect-table td:nth-child(1) { width: 55px; text-align: center;} /* Photo - um pouco menor */
-.insect-table th:nth-child(2), .insect-table td:nth-child(2) { width: 110px; } /* Name - um pouco menor */
-.insect-table th:nth-child(3), .insect-table td:nth-child(3) { width: 130px; } /* Location - um pouco menor */
-.insect-table th:nth-child(4), .insect-table td:nth-child(4) { width: 140px; } /* Season(s) - um pouco menor */
-.insect-table th:nth-child(5), .insect-table td:nth-child(5) { width: 100px; } /* Time - um pouco menor */
-.insect-table th:nth-child(6), .insect-table td:nth-child(6) { 
-    width: 120px; /* Weather - LARGURA REDUZIDA E FIXA */
-    /* min-width: 120px; /* Alternativamente, use min-width se quiser que expanda um pouco */
-}
-.insect-table th:nth-child(7), .insect-table td:nth-child(7) { width: 70px;  } /* Rarity - um pouco menor */
-.insect-table th:nth-child(8), .insect-table td:nth-child(8) { width: 85px; text-align: center; } /* Donated - um pouco menor */
-
-/* ... (restante dos estilos da tabela de insetos, .item-icon, .icon-text-cell, etc.) ... */
-
-/* Células com Ícones e Texto (Season, Time, Weather) na tabela de insetos */
-.insect-table .icon-text-cell {
-    /* O vertical-align: top; na td já cuida do alinhamento superior */
-    /* Ícones e texto fluirão naturalmente. Se precisar de empilhamento, use <br> ou divs no HTML. */
-}
-
 .insect-table .icon-text-cell .inline-icon {
-    /* Estilo para os ícones pequenos dentro dessas células */
     margin-bottom: 2px;
-    /* Ajuste para alinhamento com texto que quebra linha */
-    /* display: inline-block; /* Para permitir que texto flua ao lado */
 }
-
 .insect-table .icon-text-cell span {
-    /* Para texto do horário ou outras descrições */
     display: block;
-    /* Força o texto do horário para nova linha, abaixo do ícone */
     margin-top: 1px;
-    /* Pequeno espaço se estiver abaixo do ícone */
-    /* Considere se este 'display: block' é sempre desejado ou apenas para a célula de Time */
 }
-
-/* Para que ícones e texto fiquem lado a lado e quebrem juntos: */
-.insect-table .icon-text-cell>div {
-    /* Se você agrupar img+texto em um div */
+.insect-table .icon-text-cell > div {
     display: inline-flex;
-    /* Ou apenas inline, dependendo do conteúdo */
     align-items: center;
     margin-right: 5px;
-    /* Espaço entre os grupos de ícone+texto */
     margin-bottom: 2px;
 }
-
 
 .insect-table .item-donate label {
     font-size: 0.9em;
@@ -798,18 +739,152 @@ footer {
     justify-content: center;
     width: 100%;
 }
-
 .insect-table .item-donate input[type="checkbox"] {
     transform: scale(1.1);
     margin-right: 5px;
 }
 
+/* --------------------------------------------------------------------------
+   4.4 Seção Museu Peixes (Layout de Tabela)
+   -------------------------------------------------------------------------- */
+.fish-table-container {
+    overflow-x: auto;
+    width: 100%;
+}
 
-/* === ELEMENTOS DE UI INTERATIVOS === */
-/* Botão Flutuante "Home" */
+.fish-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    border: 1px solid #257F78;
+    background-color: #fff;
+    table-layout: fixed;
+}
+
+.fish-table thead th {
+    background-color: #32A89E;
+    color: white;
+    font-weight: bold;
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 2px solid #257F78;
+    border-right: 1px solid #2AA095;
+    font-size: 0.9em;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+.fish-table thead th:last-child {
+    border-right: none;
+}
+
+.fish-table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px dotted #d1d1d1;
+    font-size: 0.9em;
+    vertical-align: center;
+    text-align: left;
+    word-wrap: break-word;
+}
+.fish-table tbody td:last-child {
+    border-right: none;
+}
+.fish-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Colunas com largura e alinhamento específicos */
+.fish-table th:nth-child(1),
+.fish-table td:nth-child(1) {
+    width: 60px;
+    text-align: center;
+}
+.fish-table th:nth-child(2),
+.fish-table td:nth-child(2) {
+    width: 120px;
+}
+.fish-table th:nth-child(3),
+.fish-table td:nth-child(3) {
+    width: 120px;
+}
+.fish-table th:nth-child(4),
+.fish-table td:nth-child(4) {
+    width: 80px;
+}
+.fish-table th:nth-child(5),
+.fish-table td:nth-child(5) {
+    width: 80px;
+}
+.fish-table th:nth-child(6) {
+    width: 100px;
+    text-align: center;
+}
+.fish-table td:nth-child(6) {
+    width: 100px;
+}
+.fish-table th:nth-child(7),
+.fish-table td:nth-child(7) {
+    width: 90px;
+    text-align: center;
+}
+
+.fish-table .item-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+/* Células com ícones + texto (ex: Weather, Appearance) */
+.fish-table .icon-text-cell {
+    white-space: normal;
+}
+
+.fish-table .icon-text-cell .inline-icon,
+.fish-table .icon-text-cell .appearance-icon {
+    display: inline-block;
+    vertical-align: middle;
+    object-fit: contain;
+    margin-right: 4px;
+}
+.fish-table .icon-text-cell .inline-icon {
+    width: 20px;
+    height: 20px;
+}
+.fish-table .icon-text-cell .appearance-icon {
+    width: 36px;
+    height: 36px;
+}
+.fish-table .icon-text-cell .inline-icon:last-child,
+.fish-table .icon-text-cell .appearance-icon:last-child {
+    margin-right: 0;
+}
+
+.fish-table .item-donate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fish-table .item-donate label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: #333;
+    gap: 4px;
+}
+.fish-table .item-donate input[type="checkbox"] {
+    transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   5. ELEMENTOS DE UI INTERATIVOS
+   -------------------------------------------------------------------------- */
 .floating-home-button {
     position: fixed;
-    bottom: 20px;
+    bottom: 70px;
     right: 20px;
     width: 56px;
     height: 56px;
@@ -837,101 +912,4 @@ footer {
 .floating-home-button:active {
     background-color: #4A90B6;
     transform: scale(1);
-}
-
-/* --------------------------------------------------------------------------
-   4.4 Seção Museu Peixes (Layout de Tabela)
-   -------------------------------------------------------------------------- */
-
-.fish-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-    border: 1px solid #257F78;
-    background-color: #fff;
-    table-layout: fixed;
-}
-
-.fish-table thead th,
-.fish-table tbody td {
-    padding: 8px 10px;
-    font-size: 0.85em;
-    border-bottom: 1px solid #e0e0e0;
-    border-right: 1px dotted #d1d1d1;
-    vertical-align: middle;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.fish-table thead th:last-child,
-.fish-table tbody td:last-child {
-    border-right: none;
-}
-
-.fish-table tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
-}
-
-/* Colunas com largura balanceada */
-.fish-table th:nth-child(1), .fish-table td:nth-child(1) { width: 60px; }     /* Photo */
-.fish-table th:nth-child(2), .fish-table td:nth-child(2) { width: 120px; }    /* Name */
-.fish-table th:nth-child(3), .fish-table td:nth-child(3) { width: 120px; }    /* Weather */
-.fish-table th:nth-child(4), .fish-table td:nth-child(4) { width: 80px; }     /* Rarity */
-.fish-table th:nth-child(5), .fish-table td:nth-child(5) { width: 80px; }     /* Size */
-.fish-table th:nth-child(6), .fish-table td:nth-child(6) { width: 120px; }    /* Appearance */
-.fish-table th:nth-child(7), .fish-table td:nth-child(7) { width: 90px; }     /* Donated */
-
-/* Ícone da imagem do peixe */
-.fish-table .item-icon {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Células com ícones + texto (ex: Weather) */
-.fish-table .icon-text-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    white-space: normal;
-    text-align: center;
-}
-
-/* Ícones do tempo ou aparência */
-.fish-table .inline-icon,
-.fish-table .appearance-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-/* Ajuste visual apenas para ícone da aparência (grande) */
-.fish-table .appearance-icon {
-    width: 36px;
-    height: 36px;
-}
-
-/* Célula do checkbox centralizado */
-.fish-table .item-donate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fish-table .item-donate label {
-    display: flex;
-    align-items: center;
-    font-size: 0.9em;
-    color: #333;
-    gap: 4px;
-}
-
-.fish-table .item-donate input[type="checkbox"] {
-    transform: scale(1.1);
 }
