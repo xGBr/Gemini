@@ -369,3 +369,48 @@ document.addEventListener('DOMContentLoaded', ()=> {
             popularFloraTodasEstacoes();
         }
     });
+    /**
+ * Adiciona funcionalidade de destaque visual para itens, indicando se foram doados ou não.
+ * Salva e carrega o estado dos checkboxes do localStorage.
+ * Por padrão, itens não marcados ficam com fundo vermelho claro.
+ * Itens marcados ficam com fundo verde claro.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const allCheckboxes = document.querySelectorAll('.item-donate input[type="checkbox"]');
+    const storagePrefix = 'donated_'; // Usamos um prefixo para evitar conflitos no localStorage
+
+    // Função para aplicar o estilo correto (verde, vermelho) com base no estado do checkbox
+    function applyDonationStatusStyle(checkbox) {
+        const parentItem = checkbox.closest('tr, .list-item-entry'); // Funciona para tabelas (<tr>) e listas (<li>)
+        if (!parentItem) return;
+
+        if (checkbox.checked) {
+            // Se está marcado, fica verde
+            parentItem.classList.add('donated-item');
+            parentItem.classList.remove('not-donated-item');
+        } else {
+            // Se não está marcado, fica vermelho
+            parentItem.classList.add('not-donated-item');
+            parentItem.classList.remove('donated-item');
+        }
+    }
+
+    // Ao carregar a página, verifica cada checkbox
+    allCheckboxes.forEach(checkbox => {
+        const storedValue = localStorage.getItem(storagePrefix + checkbox.name);
+
+        // Define o estado do checkbox com base no que está salvo. Se não houver nada salvo, o padrão é 'false' (desmarcado).
+        checkbox.checked = storedValue === 'true';
+
+        // Aplica o estilo inicial (vermelho ou verde)
+        applyDonationStatusStyle(checkbox);
+
+        // Adiciona um listener que dispara toda vez que o checkbox muda de estado
+        checkbox.addEventListener('change', function() {
+            // Salva o novo estado (true/false) no localStorage
+            localStorage.setItem(storagePrefix + this.name, this.checked);
+            // Atualiza o estilo visual imediatamente
+            applyDonationStatusStyle(this);
+        });
+    });
+});

@@ -838,7 +838,6 @@ footer {
     background-color: #fff;
 }
 
-/* Células com ícones + texto (ex: Weather, Appearance) */
 .fish-table .icon-text-cell {
     white-space: normal;
 }
@@ -878,6 +877,20 @@ footer {
 .fish-table .item-donate input[type="checkbox"] {
     transform: scale(1.1);
 }
+
+/* --------------------------------------------------------------------------
+   4.5 Estilos para Itens Doados
+   -------------------------------------------------------------------------- */
+.donated-item {
+    background-color: #d4edda !important; /* Verde claro */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.not-donated-item {
+    background-color: #f8d7da !important; /* Vermelho claro */
+    transition: background-color 0.3s ease-in-out;
+}
+
 
 /* --------------------------------------------------------------------------
    5. ELEMENTOS DE UI INTERATIVOS

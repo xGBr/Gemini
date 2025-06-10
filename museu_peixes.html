@@ -15,12 +15,116 @@
 
     <main>
       <div class="tabs">
-        <button class="tab-button active" onclick="mostrarConteudo('peixes_river_tab', this)">River</button>
+        <button class="tab-button active" onclick="mostrarConteudo('peixes_multiseason_tab', this)">Multi-Season</button>
+        <button class="tab-button" onclick="mostrarConteudo('peixes_river_tab', this)">River</button>
         <button class="tab-button" onclick="mostrarConteudo('peixes_pond_tab', this)">Pond</button>
         <button class="tab-button" onclick="mostrarConteudo('peixes_ocean_tab', this)">Ocean</button>
         <button class="tab-button" onclick="mostrarConteudo('peixes_mines_tab', this)">Mines</button>
         <button class="tab-button" onclick="mostrarConteudo('peixes_deepwoods_tab', this)">Deep Woods</button>
         <button class="tab-button" onclick="mostrarConteudo('peixes_legendary_tab', this)">Legendary</button>
+      </div>
+
+      <div id="peixes_multiseason_tab" class="tab-content active">
+        <h2 class="page-subtitle">Multi-Season Fish</h2>
+        <div class="item-subcategory-card">
+          <h4>All Locations</h4>
+          <div class="fish-table-container">
+            <table class="fish-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Name & Location</th>
+                  <th>Weather</th>
+                  <th>Rarity</th>
+                  <th>Size</th>
+                  <th>Appearance</th>
+                  <th>Donated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Koi.png" alt="Koi" class="item-icon" /></td>
+                  <td>Koi<br /><small>(Pond)</small></td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_koi_multiseason" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Pike.png" alt="Pike" class="item-icon" /></td>
+                  <td>Pike<br /><small>(River)</small></td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_pike_multiseason" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Pollock.png" alt="Pollock" class="item-icon" /></td>
+                  <td>Pollock<br /><small>(Ocean)</small></td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_pollock_multiseason" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Smallmouth_bass.png" alt="Smallmouth Bass" class="item-icon" /></td>
+                  <td>Smallmouth Bass<br /><small>(River)</small></td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_smallmouth_bass_multiseason" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Trout.png" alt="Trout" class="item-icon" /></td>
+                  <td>Trout<br /><small>(River)</small></td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_trout_multiseason" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <div id="peixes_river_tab" class="tab-content active">
@@ -218,96 +322,101 @@
           </div>
         </div>
 
-<div class="item-subcategory-card">
-  <h4>Fall River</h4>
-  <div class="fish-table-container">
-    <table class="fish-table">
-      <thead>
-        <tr>
-          <th>Photo</th>
-          <th>Name</th>
-          <th>Weather</th>
-          <th>Rarity</th>
-          <th>Size</th>
-          <th>Appearance</th>
-          <th>Donated</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><img src="images/itens/Fish/Grayling.png" alt="Grayling" class="item-icon"></td>
-          <td>Grayling</td>
-          <td class="icon-text-cell">
-            <img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon"> Rainy, 
-            <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon"> Rain, 
-            <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon"> Storm, 
-            <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon"> Thunderstorm
-          </td>
-          <td>Common</td>
-          <td>Small</td>
-          <td class="icon-text-cell">
-            <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon">
-          </td>
-          <td><div class="item-donate"><label><input type="checkbox" name="donated_grayling_fall_river"> Donated</label></div></td>
-        </tr>
-        <tr>
-          <td><img src="images/itens/Fish/Lamprey.png" alt="Lamprey" class="item-icon"></td>
-          <td>Lamprey</td>
-          <td class="icon-text-cell">Any</td>
-          <td>Common</td>
-          <td>Small</td>
-          <td class="icon-text-cell">
-            <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon">
-          </td>
-          <td><div class="item-donate"><label><input type="checkbox" name="donated_lamprey_fall_river"> Donated</label></div></td>
-        </tr>
-        <tr>
-          <td><img src="images/itens/Fish/Perch.png" alt="Perch" class="item-icon"></td>
-          <td>Perch</td>
-          <td class="icon-text-cell">
-            <img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon"> Rainy, 
-            <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon"> Rain, 
-            <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon"> Storm
-          </td>
-          <td>Common</td>
-          <td>Large</td>
-          <td class="icon-text-cell">
-            <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon">
-          </td>
-          <td><div class="item-donate"><label><input type="checkbox" name="donated_perch_fall_river"> Donated</label></div></td>
-        </tr>
-        <tr>
-          <td><img src="images/itens/Fish/Razorback.png" alt="Razorback" class="item-icon"></td>
-          <td>Razorback</td>
-          <td class="icon-text-cell">
-            <img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon"> Rainy, 
-            <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon"> Rain, 
-            <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon"> Storm, 
-            <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon"> Thunderstorm
-          </td>
-          <td>Rare</td>
-          <td>Medium</td>
-          <td class="icon-text-cell">
-            <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon">
-          </td>
-          <td><div class="item-donate"><label><input type="checkbox" name="donated_razorback_fall_river"> Donated</label></div></td>
-        </tr>
-        <tr>
-          <td><img src="images/itens/Fish/Shad.png" alt="Shad" class="item-icon"></td>
-          <td>Shad</td>
-          <td class="icon-text-cell">Any</td>
-          <td>Common</td>
-          <td>Medium</td>
-          <td class="icon-text-cell">
-            <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon">
-          </td>
-          <td><div class="item-donate"><label><input type="checkbox" name="donated_shad_fall_river"> Donated</label></div></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
+        <div class="item-subcategory-card">
+          <h4>Fall River</h4>
+          <div class="fish-table-container">
+            <table class="fish-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th>Weather</th>
+                  <th>Rarity</th>
+                  <th>Size</th>
+                  <th>Appearance</th>
+                  <th>Donated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Grayling.png" alt="Grayling" class="item-icon" /></td>
+                  <td>Grayling</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain, <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon" /> Storm, <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon" /> Thunderstorm</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_grayling_fall_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Lamprey.png" alt="Lamprey" class="item-icon" /></td>
+                  <td>Lamprey</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_lamprey_fall_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Perch.png" alt="Perch" class="item-icon" /></td>
+                  <td>Perch</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain, <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon" /> Storm</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_perch_fall_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Razorback.png" alt="Razorback" class="item-icon" /></td>
+                  <td>Razorback</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain, <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon" /> Storm, <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon" /> Thunderstorm</td>
+                  <td>Rare</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_razorback_fall_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Shad.png" alt="Shad" class="item-icon" /></td>
+                  <td>Shad</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_shad_fall_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div class="item-subcategory-card">
           <h4>Winter River</h4>
@@ -326,18 +435,77 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="images/itens/Fish/Pike.png" alt="Pike" class="item-icon" /></td>
-                  <td>Pike</td>
+                  <td><img src="images/itens/Fish/Bowfish.png" alt="Bowfish" class="item-icon" /></td>
+                  <td>Bowfish</td>
                   <td class="icon-text-cell">Any</td>
                   <td>Common</td>
                   <td>Large</td>
                   <td class="icon-text-cell">
-                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="inline-icon" />
-                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="inline-icon" />
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
                   </td>
                   <td>
                     <div class="item-donate">
-                      <label><input type="checkbox" name="donated_pike_winter_river" /> Donated</label>
+                      <label><input type="checkbox" name="donated_bowfish_winter_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Dace.png" alt="Dace" class="item-icon" /></td>
+                  <td>Dace</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_snow.png" alt="Snow" title="Snow" class="inline-icon" /> Snow, <img src="images/Season/Weather_icon_blizzard.png" alt="Blizzard" title="Blizzard" class="inline-icon" /> Blizzard</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_dace_winter_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Freshwater_eel.png" alt="Freshwater Eel" class="item-icon" /></td>
+                  <td>Freshwater Eel</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_freshwater_eel_winter_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Herring.png" alt="Herring" class="item-icon" /></td>
+                  <td>Herring</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_herring_winter_river" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Shadow_bass.png" alt="Shadow Bass" class="item-icon" /></td>
+                  <td>Shadow Bass</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_shadow_bass_winter_river" /> Donated</label>
                     </div>
                   </td>
                 </tr>
@@ -348,6 +516,7 @@
       </div>
       <div id="peixes_pond_tab" class="tab-content">
         <h2 class="page-subtitle">Pond Fish</h2>
+
         <div class="item-subcategory-card">
           <h4>Spring Pond</h4>
           <div class="fish-table-container">
@@ -365,24 +534,85 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="images/itens/Fish/Koi.png" alt="Koi" class="item-icon" /></td>
-                  <td>Koi</td>
+                  <td><img src="images/itens/Fish/Angel_fish.png" alt="Angel Fish" class="item-icon" /></td>
+                  <td>Angel Fish</td>
                   <td class="icon-text-cell">Any</td>
                   <td>Common</td>
-                  <td>Medium</td>
-                  <td class="icon-text-cell"><img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="inline-icon" /></td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
                   <td>
                     <div class="item-donate">
-                      <label><input type="checkbox" name="donated_koi_spring_pond" /> Donated</label>
+                      <label><input type="checkbox" name="donated_angel_fish_spring_pond" /> Donated</label>
                     </div>
                   </td>
                 </tr>
-                {/* Outros peixes de Spring Pond */}
+                <tr>
+                  <td><img src="images/itens/Fish/Barb.png" alt="Barb" class="item-icon" /></td>
+                  <td>Barb</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_barb_spring_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Brown_trout.png" alt="Brown Trout" class="item-icon" /></td>
+                  <td>Brown Trout</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_brown_trout_spring_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Crucian_carp.png" alt="Crucian Carp" class="item-icon" /></td>
+                  <td>Crucian Carp</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_crucian_carp_spring_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Goldfish.png" alt="Goldfish" class="item-icon" /></td>
+                  <td>Goldfish</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_goldfish_spring_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
-        {/* Repetir para Summer Pond, Fall Pond, Winter Pond com o Koi se aplicável */}
+
         <div class="item-subcategory-card">
           <h4>Summer Pond</h4>
           <div class="fish-table-container">
@@ -400,15 +630,77 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="images/itens/Fish/Koi.png" alt="Koi" class="item-icon" /></td>
-                  <td>Koi</td>
+                  <td><img src="images/itens/Fish/Brown_bullhead.png" alt="Brown Bullhead" class="item-icon" /></td>
+                  <td>Brown Bullhead</td>
                   <td class="icon-text-cell">Any</td>
                   <td>Common</td>
                   <td>Medium</td>
-                  <td class="icon-text-cell"><img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="inline-icon" /></td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
                   <td>
                     <div class="item-donate">
-                      <label><input type="checkbox" name="donated_koi_summer_pond" /> Donated</label>
+                      <label><input type="checkbox" name="donated_brown_bullhead_summer_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Giant_koi.png" alt="Giant Koi" class="item-icon" /></td>
+                  <td>Giant Koi</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_giant_koi_summer_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Golden_shiner.png" alt="Golden Shiner" class="item-icon" /></td>
+                  <td>Golden Shiner</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_golden_shiner_summer_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Lake_chub.png" alt="Lake Chub" class="item-icon" /></td>
+                  <td>Lake Chub</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_lake_chub_summer_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Sauger.png" alt="Sauger" class="item-icon" /></td>
+                  <td>Sauger</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_sauger_summer_pond" /> Donated</label>
                     </div>
                   </td>
                 </tr>
@@ -416,6 +708,7 @@
             </table>
           </div>
         </div>
+
         <div class="item-subcategory-card">
           <h4>Fall Pond</h4>
           <div class="fish-table-container">
@@ -433,15 +726,77 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="images/itens/Fish/Koi.png" alt="Koi" class="item-icon" /></td>
-                  <td>Koi</td>
+                  <td><img src="images/itens/Fish/Bluefish.png" alt="Bluefish" class="item-icon" /></td>
+                  <td>Bluefish</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain, <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon" /> Storm, <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon" /> Thunderstorm</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_bluefish_fall_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Killifish.png" alt="Killifish" class="item-icon" /></td>
+                  <td>Killifish</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_killifish_fall_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Rainbow_trout.png" alt="Rainbow Trout" class="item-icon" /></td>
+                  <td>Rainbow Trout</td>
                   <td class="icon-text-cell">Any</td>
                   <td>Common</td>
                   <td>Medium</td>
-                  <td class="icon-text-cell"><img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="inline-icon" /></td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
                   <td>
                     <div class="item-donate">
-                      <label><input type="checkbox" name="donated_koi_fall_pond" /> Donated</label>
+                      <label><input type="checkbox" name="donated_rainbow_trout_fall_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Striped_bass.png" alt="Striped Bass" class="item-icon" /></td>
+                  <td>Striped Bass</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_striped_bass_fall_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/White_perch.png" alt="White Perch" class="item-icon" /></td>
+                  <td>White Perch</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_white_perch_fall_pond" /> Donated</label>
                     </div>
                   </td>
                 </tr>
@@ -449,6 +804,7 @@
             </table>
           </div>
         </div>
+
         <div class="item-subcategory-card">
           <h4>Winter Pond</h4>
           <div class="fish-table-container">
@@ -466,15 +822,77 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="images/itens/Fish/Koi.png" alt="Koi" class="item-icon" /></td>
-                  <td>Koi</td>
+                  <td><img src="images/itens/Fish/Alligator_gar.png" alt="Alligator Gar" class="item-icon" /></td>
+                  <td>Alligator Gar</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_alligator_gar_winter_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Burbot.png" alt="Burbot" class="item-icon" /></td>
+                  <td>Burbot</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_snow.png" alt="Snow" title="Snow" class="inline-icon" /> Snow, <img src="images/Season/Weather_icon_blizzard.png" alt="Blizzard" title="Blizzard" class="inline-icon" /> Blizzard</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_burbot_winter_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Flathead_catfish.png" alt="Flathead Catfish" class="item-icon" /></td>
+                  <td>Flathead Catfish</td>
                   <td class="icon-text-cell">Any</td>
                   <td>Common</td>
                   <td>Medium</td>
-                  <td class="icon-text-cell"><img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="inline-icon" /></td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
                   <td>
                     <div class="item-donate">
-                      <label><input type="checkbox" name="donated_koi_winter_pond" /> Donated</label>
+                      <label><input type="checkbox" name="donated_flathead_catfish_winter_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Giant_tilapia.png" alt="Giant Tilapia" class="item-icon" /></td>
+                  <td>Giant Tilapia</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Uncommon</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_giant_tilapia_winter_pond" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Tilapia.png" alt="Tilapia" class="item-icon" /></td>
+                  <td>Tilapia</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_tilapia_winter_pond" /> Donated</label>
                     </div>
                   </td>
                 </tr>
@@ -483,9 +901,10 @@
           </div>
         </div>
       </div>
+
       <div id="peixes_ocean_tab" class="tab-content">
         <h2 class="page-subtitle">Ocean Fish</h2>
-        {/* Estrutura similar com subcategorias Spring Ocean, Summer Ocean, etc. */}
+
         <div class="item-subcategory-card">
           <h4>Spring Ocean</h4>
           <div class="fish-table-container">
@@ -501,10 +920,88 @@
                   <th>Donated</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Anchovy.png" alt="Anchovy" class="item-icon" /></td>
+                  <td>Anchovy</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                    <img src="images/itens/Fish/shadow/Divehole_noplayer_active.png" alt="Divehole" title="Divehole" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_anchovy_spring_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Lobster.png" alt="Lobster" class="item-icon" /></td>
+                  <td>Lobster</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_lobster_spring_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Mackerel.png" alt="Mackerel" class="item-icon" /></td>
+                  <td>Mackerel</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_mackerel_spring_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Ocean_sunfish.png" alt="Ocean Sunfish" class="item-icon" /></td>
+                  <td>Ocean Sunfish</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_ocean_sunfish_spring_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Shrimp.png" alt="Shrimp" class="item-icon" /></td>
+                  <td>Shrimp</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_shrimp_spring_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
+
         <div class="item-subcategory-card">
           <h4>Summer Ocean</h4>
           <div class="fish-table-container">
@@ -520,10 +1017,87 @@
                   <th>Donated</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Char.png" alt="Char" class="item-icon" /></td>
+                  <td>Char</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_char_summer_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Crab.png" alt="Crab" class="item-icon" /></td>
+                  <td>Crab</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_crab_summer_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Dart.png" alt="Dart" class="item-icon" /></td>
+                  <td>Dart</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_dart_summer_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Grouper.png" alt="Grouper" class="item-icon" /></td>
+                  <td>Grouper</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_grouper_summer_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Stingray.png" alt="Stingray" class="item-icon" /></td>
+                  <td>Stingray</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_stingray_summer_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
+
         <div class="item-subcategory-card">
           <h4>Fall Ocean</h4>
           <div class="fish-table-container">
@@ -539,10 +1113,87 @@
                   <th>Donated</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Butterfish.png" alt="Butterfish" class="item-icon" /></td>
+                  <td>Butterfish</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_butterfish_fall_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Halibut.png" alt="Halibut" class="item-icon" /></td>
+                  <td>Halibut</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_rainy.png" alt="Rainy" title="Rainy" class="inline-icon" /> Rainy, <img src="images/Season/Weather_icon_rain.png" alt="Rain" title="Rain" class="inline-icon" /> Rain, <img src="images/Season/Weather_icon_storm.png" alt="Storm" title="Storm" class="inline-icon" /> Storm, <img src="images/Season/Weather_icon_thunderstorm.png" alt="Thunderstorm" title="Thunderstorm" class="inline-icon" /> Thunderstorm</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_halibut_fall_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Mullet.png" alt="Mullet" class="item-icon" /></td>
+                  <td>Mullet</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_mullet_fall_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Saury.png" alt="Saury" class="item-icon" /></td>
+                  <td>Saury</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_saury_fall_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Shark.png" alt="Shark" class="item-icon" /></td>
+                  <td>Shark</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_shark_fall_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
+
         <div class="item-subcategory-card">
           <h4>Winter Ocean</h4>
           <div class="fish-table-container">
@@ -558,11 +1209,88 @@
                   <th>Donated</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr>
+                  <td><img src="images/itens/Fish/Horse_mackerel.png" alt="Horse Mackerel" class="item-icon" /></td>
+                  <td>Horse Mackerel</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_horse_mackerel_winter_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/King_crab.png" alt="King Crab" class="item-icon" /></td>
+                  <td>King Crab</td>
+                  <td class="icon-text-cell"><img src="images/Season/Weather_icon_snow.png" alt="Snow" title="Snow" class="inline-icon" /> Snow, <img src="images/Season/Weather_icon_blizzard.png" alt="Blizzard" title="Blizzard" class="inline-icon" /> Blizzard</td>
+                  <td>Common</td>
+                  <td>Large</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_large.png" alt="Large Shadow" title="Large Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_king_crab_winter_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Oarfish.png" alt="Oarfish" class="item-icon" /></td>
+                  <td>Oarfish</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Rare</td>
+                  <td>Giant</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_giant.png" alt="Giant Shadow" title="Giant Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_oarfish_winter_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Sand_lance.png" alt="Sand Lance" class="item-icon" /></td>
+                  <td>Sand Lance</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Small</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_small.png" alt="Small Shadow" title="Small Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_sand_lance_winter_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="images/itens/Fish/Sea_bass.png" alt="Sea Bass" class="item-icon" /></td>
+                  <td>Sea Bass</td>
+                  <td class="icon-text-cell">Any</td>
+                  <td>Common</td>
+                  <td>Medium</td>
+                  <td class="icon-text-cell">
+                    <img src="images/itens/Fish/shadow/Fishshadow_medium.png" alt="Medium Shadow" title="Medium Shadow" class="appearance-icon" />
+                  </td>
+                  <td>
+                    <div class="item-donate">
+                      <label><input type="checkbox" name="donated_sea_bass_winter_ocean" /> Donated</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
       </div>
+
       <div id="peixes_mines_tab" class="tab-content">
         <h2 class="page-subtitle">Fish from the Mines</h2>
         <div class="item-subcategory-card">
