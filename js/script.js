@@ -1,8 +1,20 @@
 /**
+ * ==========================================================================
  * script.js
- * * Contém as funções JavaScript para a interatividade do Guia Fields of Mistria,
- * incluindo navegação por abas e links diretos para personagens.
+ * --------------------------------------------------------------------------
+ * Contém todas as funções JavaScript para a interatividade do Guia Fields of Mistria.
+ *
+ * Seções:
+ * 1. LÓGICA DE NAVEGAÇÃO E UI (Abas, Scroll, Spoilers, Painel de Notícias)
+ * 2. LÓGICA DE DADOS E ESTADO (Checkboxes de Doação)
+ * 3. LÓGICA ESPECÍFICA DE PÁGINAS (Ex: Flora)
+ * 4. EXECUÇÃO NO CARREGAMENTO DA PÁGINA
+ * ==========================================================================
  */
+
+/* ==========================================================================
+   1. LÓGICA DE NAVEGAÇÃO E UI
+   ========================================================================== */
 
 /**
  * Controla a exibição do conteúdo das abas.
@@ -10,37 +22,18 @@
  * @param {HTMLElement} elementoBotao - O elemento do botão da aba que foi clicado.
  */
 function mostrarConteudo(idConteudo, elementoBotao) {
-    // Encontra o container principal das abas e seus conteúdos (geralmente o <main>)
-    let containerDeTabs = elementoBotao.closest('main');
-    if (!containerDeTabs) {
-        // Fallback se não estiver dentro de um <main>, procura pelo pai mais próximo que contenha .tabs e .tab-content
-        // Esta lógica pode precisar de ajuste dependendo da sua estrutura HTML final se não usar <main>
-        let currentElement = elementoBotao;
-        while (currentElement.parentElement) {
-            containerDeTabs = currentElement.parentElement;
-            if (containerDeTabs.querySelector('.tabs') && containerDeTabs.querySelector('.tab-content')) {
-                break;
-            }
-            currentElement = containerDeTabs;
-        }
-    }
+    let containerDeTabs = elementoBotao.closest('main') || document.body;
+    containerDeTabs.querySelectorAll('.tab-content').forEach(div => {
+        div.classList.remove('active');
+    });
 
-    // Esconde todos os outros conteúdos de abas dentro do mesmo container
-    if (containerDeTabs) {
-        containerDeTabs.querySelectorAll('.tab-content').forEach(div => {
-            div.classList.remove('active');
-        });
-    }
-
-    // Remove a classe 'active' de todos os botões na mesma barra de abas
-    let paiDoBotao = elementoBotao.closest('.tabs');
-    if (paiDoBotao) {
-        paiDoBotao.querySelectorAll('.tab-button').forEach(btn => {
+    let barraDeAbas = elementoBotao.closest('.tabs');
+    if (barraDeAbas) {
+        barraDeAbas.querySelectorAll('.tab-button').forEach(btn => {
             btn.classList.remove('active');
         });
     }
 
-    // Mostra o conteúdo da aba clicada e marca o botão como ativo
     const conteudoAlvo = document.getElementById(idConteudo);
     if (conteudoAlvo) {
         conteudoAlvo.classList.add('active');
@@ -54,7 +47,6 @@ function mostrarConteudo(idConteudo, elementoBotao) {
  * @param {string} abaId - O ID do elemento de conteúdo da aba onde o personagem está.
  */
 function irParaPersonagem(personagemId, abaId) {
-    // 1. Encontrar o botão da aba correspondente e ativar a aba
     const todosOsBotoesDeAba = document.querySelectorAll('.tabs .tab-button');
     let botaoAlvo = null;
     todosOsBotoesDeAba.forEach(button => {
@@ -70,62 +62,19 @@ function irParaPersonagem(personagemId, abaId) {
         return;
     }
 
-    // 2. Scroll para o personagem após a aba ser exibida
-    // Usar um pequeno timeout para garantir que a transição da aba e a renderização do conteúdo ocorram.
     setTimeout(() => {
         const elementoPersonagem = document.getElementById(personagemId);
         if (elementoPersonagem) {
             elementoPersonagem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Opcional: Adicionar um destaque temporário
             elementoPersonagem.classList.add('highlighted-character');
             setTimeout(() => {
                 elementoPersonagem.classList.remove('highlighted-character');
-            }, 2500); // Remove o destaque após 2.5 segundos
+            }, 2500);
         } else {
             console.error('Elemento do personagem não encontrado com o ID:', personagemId);
         }
-    }, 150); // Timeout para permitir a renderização da aba
+    }, 150);
 }
-
-// Event Listener para garantir que a primeira aba (ou a marcada como 'active' no HTML)
-// esteja ativa ao carregar a página.
-document.addEventListener('DOMContentLoaded', () => {
-    const todosOsConjuntosDeTabs = document.querySelectorAll('.tabs');
-
-    todosOsConjuntosDeTabs.forEach(tabContainer => {
-        let abaAtivaNoHtml = tabContainer.querySelector('.tab-button.active');
-
-        if (abaAtivaNoHtml) {
-            // Se uma aba já está marcada como ativa no HTML, apenas garante que seu conteúdo também esteja ativo.
-            // A função mostrarConteudo já lida com isso se chamada, mas aqui garantimos o estado inicial.
-            const idConteudoAtivo = abaAtivaNoHtml.getAttribute('onclick').match(/'([^']+)'/)[1];
-            const elementoConteudoAtivo = document.getElementById(idConteudoAtivo);
-            if (elementoConteudoAtivo) {
-                // Garante que todos os outros estejam inativos e este ativo
-                // (A lógica em mostrarConteudo é mais robusta para desativar outros)
-                // Para simplificar aqui, apenas ativamos o conteúdo correspondente se o botão já está ativo.
-                // A chamada inicial de mostrarConteudo(idConteudoAtivo, abaAtivaNoHtml) poderia ser feita aqui
-                // mas para evitar chamadas múltiplas, apenas garantimos a classe no conteúdo.
-                let containerDeConteudo = abaAtivaNoHtml.closest('main') || document.body; // Encontra o container
-                if (containerDeConteudo) {
-                    containerDeConteudo.querySelectorAll('.tab-content').forEach(div => {
-                        div.classList.remove('active');
-                    });
-                }
-                elementoConteudoAtivo.classList.add('active');
-            }
-        } else {
-            // Se nenhuma aba estiver ativa no HTML, ativa a primeira.
-            const primeiroBotao = tabContainer.querySelector('.tab-button');
-            if (primeiroBotao) {
-                const primeiroConteudoId = primeiroBotao.getAttribute('onclick').match(/'([^']+)'/)[1];
-                // Chamamos mostrarConteudo para lidar com a ativação correta
-                mostrarConteudo(primeiroConteudoId, primeiroBotao);
-            }
-        }
-    });
-});
 
 /**
  * Revela um personagem spoiler na miniatura ou navega para ele se já revelado.
@@ -135,282 +84,328 @@ function revelarSpoiler(element) {
     const isRevealed = element.dataset.revealed === "true";
 
     if (!isRevealed) {
-        // Primeiro clique: Revelar
         const portraitSrc = element.dataset.portraitSrc;
-        const iconSrc = element.dataset.iconSrc; // Pega o caminho do ícone REAL do personagem
+        const iconSrc = element.dataset.iconSrc;
         const charName = element.dataset.name;
-
         const portraitImg = element.querySelector('.miniature-portrait');
         const nameArea = element.querySelector('.miniature-name-area');
         const nameSpan = nameArea.querySelector('.miniature-name');
-        const iconImg = nameArea.querySelector('.miniature-name-icon'); // Seleciona o <img> do ícone
+        const iconImg = nameArea.querySelector('.miniature-name-icon');
 
-        // Atualiza o retrato (remove blur, etc.)
         if (portraitImg) {
             portraitImg.classList.remove('blurred');
             portraitImg.alt = 'Retrato de ' + charName;
         }
-
-        // Atualiza a área do nome
         if (nameSpan) {
             nameSpan.textContent = charName;
             nameSpan.classList.remove('spoiler-text');
         }
-
         if (iconImg) {
-            iconImg.src = iconSrc; // <<<---- AQUI O ÍCONE REAL É CARREGADO NO LUGAR DO PLACEHOLDER
+            iconImg.src = iconSrc;
             iconImg.alt = '';
             iconImg.classList.remove('is-spoiler-icon');
         }
-
         element.dataset.revealed = "true";
     } else {
-        // Segundo clique: Navegar
         const charId = element.dataset.charId;
         const tabId = element.dataset.tabId;
         irParaPersonagem(charId, tabId);
     }
 }
 
-// Certifique-se que a função irParaPersonagem já existe no seu script.js
-// function irParaPersonagem(personagemId, abaId) { ... }
-
-// DENTRO DO SEU ARQUIVO SCRIPT.JS
-
-// (Sua função mostrarConteudo e irParaPersonagem devem estar aqui)
-
-// DENTRO DO SEU ARQUIVO SCRIPT.JS
-// (Suas funções mostrarConteudo e irParaPersonagem devem estar aqui)
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ... (seu código existente para ativar a primeira aba em outras páginas) ...
-
-    function popularFloraTodasEstacoes() {
-        const abasEstacoesIds = ['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
-        const agregadosDestino = {
-            Crop: document.querySelector('#all_seasons_crop .flora-item-list'),
-            Flower: document.querySelector('#all_seasons_flower .flora-item-list'),
-            Forageable: document.querySelector('#all_seasons_forageable .flora-item-list')
-        };
-
-        if (!agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
-            return; 
-        }
-        
-        for (const key in agregadosDestino) {
-            agregadosDestino[key].innerHTML = ''; // Limpa listas
-        }
-
-        abasEstacoesIds.forEach(idAba => {
-            const abaConteudo = document.getElementById(idAba);
-            if (abaConteudo) {
-                const cardsSubcategoria = abaConteudo.querySelectorAll('.flora-subcategory-card');
-                cardsSubcategoria.forEach(card => {
-                    const listaItens = card.querySelector('.flora-item-list');
-                    const tipoCategoria = listaItens ? listaItens.dataset.category : null; // Usa o data-category
-
-                    if (tipoCategoria && agregadosDestino[tipoCategoria]) {
-                        const itens = listaItens.querySelectorAll('.flora-item');
-                        itens.forEach(item => {
-                            const itemClonado = item.cloneNode(true);
-                            agregadosDestino[tipoCategoria].appendChild(itemClonado);
-                        });
-                    }
-                });
-            }
-        });
-    }
-
-    // Chama a função para popular se estivermos na página correta
-    if (document.getElementById('all_seasons_crop') && document.getElementById('all_seasons_flower') && document.getElementById('all_seasons_forageable')) {
-        popularFloraTodasEstacoes();
-    }
-});
-// DENTRO DO SEU ARQUIVO SCRIPT.JS
-
-// Sua função mostrarConteudo() deve estar aqui:
-function mostrarConteudo(idConteudo, elementoBotao) {
-    let containerDeTabs=elementoBotao.closest('main') || document.body;
-
-    containerDeTabs.querySelectorAll('.tab-content').forEach(div=> {
-            div.classList.remove('active');
-        });
-
-    let paiDoBotao=elementoBotao.closest('.tabs');
-
-    if (paiDoBotao) {
-        paiDoBotao.querySelectorAll('.tab-button').forEach(btn=> {
-                btn.classList.remove('active');
-            });
-    }
-
-    const conteudoAlvo=document.getElementById(idConteudo);
-
-    if (conteudoAlvo) {
-        conteudoAlvo.classList.add('active');
-    }
-
-    elementoBotao.classList.add('active');
+/**
+ * Revela uma localização com efeito de spoiler.
+ * @param {HTMLElement} element - O elemento da localização que foi clicado.
+ */
+function revelarLocalizacao(element) {
+    element.classList.remove('blurred');
 }
 
-// Sua função irParaPersonagem() (se estiver usando em outras páginas) pode estar aqui
-// Sua função revelarSpoiler() (se estiver usando em outras páginas) pode estar aqui
-
-
-document.addEventListener('DOMContentLoaded', ()=> {
-        // Ativa a primeira aba em qualquer página que tenha o sistema de abas
-        const todosOsConjuntosDeTabs=document.querySelectorAll('.tabs');
-
-        todosOsConjuntosDeTabs.forEach(tabContainer=> {
-                let abaAtivaNoHtml=tabContainer.querySelector('.tab-button.active');
-
-                if ( !abaAtivaNoHtml) {
-                    // Se nenhuma aba estiver marcada como ativa no HTML
-                    const primeiroBotao=tabContainer.querySelector('.tab-button');
-
-                    if (primeiroBotao) {
-                        // Extrai o ID do conteúdo do onclick do primeiro botão
-                        const onclickAttr=primeiroBotao.getAttribute('onclick');
-
-                        if (onclickAttr) {
-                            const match=onclickAttr.match(/'([^']+)'/);
- if (match && match[1]) {
-                                const primeiroConteudoId=match[1];
-                                mostrarConteudo(primeiroConteudoId, primeiroBotao);
-                            }
-                        }
-                    }
-                }
-
-                else {
-                    // Se já houver uma aba ativa no HTML, garante que seu conteúdo também esteja
-                    const idConteudoAtivo=abaAtivaNoHtml.getAttribute('onclick').match(/'([^']+)'/)[1];
- const elementoConteudoAtivo=document.getElementById(idConteudoAtivo);
-
-                    if (elementoConteudoAtivo) {
-                        // Garante que todos os outros estejam inativos antes de ativar este
-                        let containerDeConteudo=abaAtivaNoHtml.closest('main') || document.body;
-
-                        if (containerDeConteudo) {
-                            containerDeConteudo.querySelectorAll('.tab-content').forEach(div=> {
-                                    if (div.id !==idConteudoAtivo) {
-                                        div.classList.remove('active');
-                                    }
-                                });
-                        }
-
-                        elementoConteudoAtivo.classList.add('active');
-                    }
-                }
-            });
-
-        // Função para popular a aba "All Seasons" na página museu_flora.html
-        function popularFloraTodasEstacoes() {
-            const abasEstacoesIds=['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
-
-            const agregadosDestino= {
-                Crop: document.querySelector('#all_seasons_crop .item-list'),
-                Flower: document.querySelector('#all_seasons_flower .item-list'),
-                Forageable: document.querySelector('#all_seasons_forageable .item-list')
-            }
-
-            ;
-
-            // Verifica se estamos na página museu_flora.html e se os elementos de destino existem
-            if ( !agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
-                return;
-            }
-
-            for (const key in agregadosDestino) {
-                if (agregadosDestino[key]) {
-                    agregadosDestino[key].innerHTML=''; // Limpa listas agregadas
-                }
-            }
-
-            abasEstacoesIds.forEach(idAba=> {
-                    const abaConteudo=document.getElementById(idAba);
-
-                    if (abaConteudo) {
-                        const cardsSubcategoria=abaConteudo.querySelectorAll('.item-subcategory-card');
-
-                        cardsSubcategoria.forEach(card=> {
-                                const listaItensOriginal=card.querySelector('.item-list');
-
-                                if (listaItensOriginal) {
-                                    const tipoCategoria=listaItensOriginal.dataset.category; // Crop, Flower, Forageable
-
-                                    if (tipoCategoria && agregadosDestino[tipoCategoria]) {
-                                        const itens=listaItensOriginal.querySelectorAll('.list-item-entry');
-
-                                        itens.forEach(item=> {
-                                                const itemClonado=item.cloneNode(true);
-                                                // Opcional: Adicionar indicador da estação original
-                                                // const nomeItemSpan = itemClonado.querySelector('.item-name');
-                                                // if (nomeItemSpan) {
-                                                //    let estacaoOriginalTexto = idAba.replace('flora_', ''); 
-                                                //    estacaoOriginalTexto = estacaoOriginalTexto.charAt(0).toUpperCase() + estacaoOriginalTexto.slice(1);
-                                                //    const estacaoSpan = document.createElement('span');
-                                                //    estacaoSpan.textContent = ` (${estacaoOriginalTexto})`;
-                                                //    estacaoSpan.style.fontSize = "0.8em";
-                                                //    estacaoSpan.style.fontStyle = "italic";
-                                                //    nomeItemSpan.appendChild(estacaoSpan);
-                                                // }
-                                                agregadosDestino[tipoCategoria].appendChild(itemClonado);
-                                            });
-                                    }
-                                }
-                            });
-                    }
-                });
-        }
-
-        // Chama a função para popular se estivermos na página correta (flora_all_seasons existe)
-        if (document.getElementById('flora_all_seasons')) {
-            popularFloraTodasEstacoes();
-        }
-    });
-    /**
- * Adiciona funcionalidade de destaque visual para itens, indicando se foram doados ou não.
- * Salva e carrega o estado dos checkboxes do localStorage.
- * Por padrão, itens não marcados ficam com fundo vermelho claro.
- * Itens marcados ficam com fundo verde claro.
+/**
+ * Abre ou fecha o painel de notícias.
  */
-document.addEventListener('DOMContentLoaded', () => {
-    const allCheckboxes = document.querySelectorAll('.item-donate input[type="checkbox"]');
-    const storagePrefix = 'donated_'; // Usamos um prefixo para evitar conflitos no localStorage
+function toggleNewsPanel() {
+    const overlay = document.getElementById('news-panel-overlay');
+    const iframe = overlay.querySelector('iframe');
+    const isActive = overlay.classList.contains('active');
 
-    // Função para aplicar o estilo correto (verde, vermelho) com base no estado do checkbox
+    if (isActive) {
+        overlay.classList.remove('active');
+    } else {
+        // Adiciona um timestamp para evitar o cache do iframe e sempre carregar a última versão
+        iframe.src = `news.html?t=${new Date().getTime()}`;
+        overlay.classList.add('active');
+    }
+}
+
+
+/* ==========================================================================
+   2. LÓGICA DE DADOS E ESTADO
+   ========================================================================== */
+
+/**
+ * Gerencia o estado de doação dos itens (checkboxes).
+ * - Aplica fundo vermelho (pendente) ou verde (doado).
+ * - Salva o estado no localStorage para persistir os dados.
+ */
+function inicializarStatusDoacao() {
+    const allCheckboxes = document.querySelectorAll('.item-donate input[type="checkbox"]');
+    const storagePrefix = 'donated_';
+
     function applyDonationStatusStyle(checkbox) {
-        const parentItem = checkbox.closest('tr, .list-item-entry'); // Funciona para tabelas (<tr>) e listas (<li>)
+        const parentItem = checkbox.closest('tr, .list-item-entry');
         if (!parentItem) return;
 
         if (checkbox.checked) {
-            // Se está marcado, fica verde
             parentItem.classList.add('donated-item');
             parentItem.classList.remove('not-donated-item');
         } else {
-            // Se não está marcado, fica vermelho
             parentItem.classList.add('not-donated-item');
             parentItem.classList.remove('donated-item');
         }
     }
 
-    // Ao carregar a página, verifica cada checkbox
     allCheckboxes.forEach(checkbox => {
         const storedValue = localStorage.getItem(storagePrefix + checkbox.name);
-
-        // Define o estado do checkbox com base no que está salvo. Se não houver nada salvo, o padrão é 'false' (desmarcado).
         checkbox.checked = storedValue === 'true';
+        applyDonationStatusStyle(checkbox); // Aplica o estilo inicial
 
-        // Aplica o estilo inicial (vermelho ou verde)
-        applyDonationStatusStyle(checkbox);
-
-        // Adiciona um listener que dispara toda vez que o checkbox muda de estado
         checkbox.addEventListener('change', function() {
-            // Salva o novo estado (true/false) no localStorage
             localStorage.setItem(storagePrefix + this.name, this.checked);
-            // Atualiza o estilo visual imediatamente
-            applyDonationStatusStyle(this);
+            applyDonationStatusStyle(this); // Atualiza o estilo na mudança
         });
     });
+}
+
+
+/* ==========================================================================
+   3. LÓGICA ESPECÍFICA DE PÁGINAS
+   ========================================================================== */
+
+/**
+ * Popula a aba "All Seasons" na página museu_flora.html, agregando
+ * os itens das outras abas de estação.
+ */
+function popularFloraTodasEstacoes() {
+    const abasEstacoesIds = ['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
+    const agregadosDestino = {
+        Crop: document.querySelector('#all_seasons_crop .item-list'),
+        Flower: document.querySelector('#all_seasons_flower .item-list'),
+        Forageable: document.querySelector('#all_seasons_forageable .item-list')
+    };
+
+    // Só executa se estiver na página de flora e os elementos existirem
+    if (!agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
+        return;
+    }
+
+    // Limpa as listas agregadas antes de popular
+    for (const key in agregadosDestino) {
+        agregadosDestino[key].innerHTML = '';
+    }
+
+    // Itera sobre cada aba de estação
+    abasEstacoesIds.forEach(idAba => {
+        const abaConteudo = document.getElementById(idAba);
+        if (abaConteudo) {
+            const cardsSubcategoria = abaConteudo.querySelectorAll('.item-subcategory-card');
+            cardsSubcategoria.forEach(card => {
+                const listaItensOriginal = card.querySelector('.item-list');
+                if (listaItensOriginal) {
+                    const tipoCategoria = listaItensOriginal.dataset.category; // Crop, Flower, Forageable
+                    if (tipoCategoria && agregadosDestino[tipoCategoria]) {
+                        const itens = listaItensOriginal.querySelectorAll('.list-item-entry');
+                        itens.forEach(item => {
+                            const itemClonado = item.cloneNode(true);
+                            agregadosDestino[tipoCategoria].appendChild(itemClonado);
+                        });
+                    }
+                }
+            });
+        }
+    });
+}
+
+
+/* ==========================================================================
+   4. EXECUÇÃO NO CARREGAMENTO DA PÁGINA
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Inicialização do sistema de abas ---
+    const todosOsConjuntosDeTabs = document.querySelectorAll('.tabs');
+    todosOsConjuntosDeTabs.forEach(tabContainer => {
+        let abaAtivaNoHtml = tabContainer.querySelector('.tab-button.active');
+        if (abaAtivaNoHtml) {
+            // Se uma aba já está marcada como ativa no HTML, garante que seu conteúdo também esteja
+            const onclickAttr = abaAtivaNoHtml.getAttribute('onclick');
+            if(onclickAttr) {
+                const idConteudoAtivo = onclickAttr.match(/'([^']+)'/)[1];
+                const elementoConteudoAtivo = document.getElementById(idConteudoAtivo);
+                if (elementoConteudoAtivo) {
+                    elementoConteudoAtivo.classList.add('active');
+                }
+            }
+        } else {
+            // Se nenhuma aba estiver ativa, ativa a primeira por padrão
+            const primeiroBotao = tabContainer.querySelector('.tab-button');
+            if (primeiroBotao) {
+                const onclickAttr = primeiroBotao.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/'([^']+)'/);
+                    if (match && match[1]) {
+                        const primeiroConteudoId = match[1];
+                        mostrarConteudo(primeiroConteudoId, primeiroBotao);
+                    }
+                }
+            }
+        }
+    });
+
+    // --- Inicialização do sistema de status de doação (vermelho/verde) ---
+    inicializarStatusDoacao();
+    
+    // --- Lógica específica para a página de Flora ---
+    popularFloraTodasEstacoes();
+
+    // --- Fechar painel de notícias ao clicar fora (no overlay) ---
+    const overlay = document.getElementById('news-panel-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function(event) {
+            if (event.target === overlay) {
+                toggleNewsPanel();
+            }
+        });
+    }
 });
+
+/* ==========================================================================
+   5. Todas as estacoes
+   ========================================================================== */
+
+function carregarConteudoEstacoes() {
+  const estacoes = ['spring', 'summer', 'fall', 'winter'];
+  const secoes = {
+    flora: { titulo: 'Flora', campos: ['Crop', 'Flower', 'Forageable'] },
+    insetos: { titulo: 'Insects', tabela: 'insects' },
+    peixes: { titulo: 'Fish', tabela: 'fish' },
+  };
+
+  estacoes.forEach(estacao => {
+    const container = document.getElementById(`season_${estacao}`);
+    if (!container) return;
+
+    container.innerHTML = ''; // Limpa antes de adicionar
+
+    // Flora
+    const floraSection = document.createElement('section');
+    floraSection.innerHTML = `<h2>🌿 Flora (${capitalize(estacao)})</h2>`;
+    secoes.flora.campos.forEach(tipo => {
+      const itens = database.flora.filter(item => item.season?.includes(estacao) && item.type === tipo);
+      if (itens.length > 0) {
+        const card = criarListaItens(tipo, itens);
+        floraSection.appendChild(card);
+      }
+    });
+    container.appendChild(floraSection);
+
+    // Insetos
+    const insetos = database.insects.filter(item => item.season?.includes(estacao));
+    if (insetos.length > 0) {
+      const insetosSection = document.createElement('section');
+      insetosSection.innerHTML = `<h2>🐞 Insects (${capitalize(estacao)})</h2>`;
+      insetosSection.appendChild(criarTabelaInsects(insetos));
+      container.appendChild(insetosSection);
+    }
+
+    // Peixes
+    const peixes = database.fish.filter(item => item.season?.includes(estacao));
+    if (peixes.length > 0) {
+      const peixesSection = document.createElement('section');
+      peixesSection.innerHTML = `<h2>🐟 Fish (${capitalize(estacao)})</h2>`;
+      peixesSection.appendChild(criarTabelaPeixes(peixes));
+      container.appendChild(peixesSection);
+    }
+  });
+}
+
+function criarListaItens(tipo, itens) {
+  const card = document.createElement('div');
+  card.className = 'item-subcategory-card';
+  card.innerHTML = `<h4>${tipo}s</h4>`;
+  const ul = document.createElement('ul');
+  ul.className = 'item-list';
+
+  itens.forEach(item => {
+    const li = document.createElement('li');
+    li.className = 'list-item-entry';
+    li.innerHTML = `
+      <img src="${item.icon}" alt="${item.name}" class="item-icon" />
+      <div class="item-details">
+        <span class="item-name">${item.name}</span>
+        ${item.location ? `<span class="item-location">${item.location}</span>` : ''}
+        ${item.seedPrice ? `<span class="item-seed-price">${item.seedPrice}</span>` : ''}
+      </div>
+      <div class="item-donate">
+        <label><input type="checkbox" name="donated_${item.name}_${item.season}" /> Delivered</label>
+      </div>`;
+    ul.appendChild(li);
+  });
+
+  card.appendChild(ul);
+  return card;
+}
+
+function criarTabelaInsects(insetos) {
+  const tabela = document.createElement('table');
+  tabela.className = 'insect-table';
+  tabela.innerHTML = `
+    <thead>
+      <tr>
+        <th>Photo</th><th>Name</th><th>Location</th><th>Time</th><th>Weather</th><th>Rarity</th><th>Donated</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${insetos.map(item => `
+        <tr>
+          <td><img src="${item.icon}" alt="${item.name}" class="item-icon" /></td>
+          <td>${item.name}</td>
+          <td>${item.location}</td>
+          <td>${item.time}</td>
+          <td>${item.weather}</td>
+          <td>${item.rarity}</td>
+          <td><label><input type="checkbox" name="donated_${item.name}" /> Donated</label></td>
+        </tr>
+      `).join('')}
+    </tbody>`;
+  return tabela;
+}
+
+function criarTabelaPeixes(peixes) {
+  const tabela = document.createElement('table');
+  tabela.className = 'fish-table';
+  tabela.innerHTML = `
+    <thead>
+      <tr>
+        <th>Photo</th><th>Name</th><th>Location</th><th>Weather</th><th>Rarity</th><th>Size</th><th>Donated</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${peixes.map(item => `
+        <tr>
+          <td><img src="${item.icon}" alt="${item.name}" class="item-icon" /></td>
+          <td>${item.name}</td>
+          <td>${item.location}</td>
+          <td>${item.weather}</td>
+          <td>${item.rarity}</td>
+          <td>${item.size}</td>
+          <td><label><input type="checkbox" name="donated_${item.name}" /> Donated</label></td>
+        </tr>
+      `).join('')}
+    </tbody>`;
+  return tabela;
+}
+
+function capitalize(palavra) {
+  return palavra.charAt(0).toUpperCase() + palavra.slice(1);
+}

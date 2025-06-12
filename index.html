@@ -24,21 +24,47 @@
             <li>
                 <a href="museu.html">
                     <img src="images/icon_museum.png" alt="Ícone Museu">
-                    <span>Museu</span>
+                    <span>Museum</span>
                 </a>
             </li>
             <li>
                 <a href="moradores.html">
                     <img src="images/icon_moradores.png" alt="Ícone Moradores">
-                    <span>Moradores</span>
+                    <span>Characters</span>
+                </a>
+            </li>
+            <li>
+                <a href="Quest.html">
+                    <img src="images/icons_gerais/quest.png" alt="Ícone Moradores">
+                    <span>Quest (Breve)</span>
+                </a>
+            </li>
+            <li>
+                <!-- Botão de Notícias -->
+                <a href="#" onclick="toggleNewsPanel()">
+                    <img src="images/icons_gerais/news_icon.png" alt="Ícone de Notícias">
+                    <span>News</span>
                 </a>
             </li>
         </ul>
     </nav>
 
+    <!-- O <main> agora está vazio na página inicial, mas pode ser usado para outros conteúdos no futuro -->
+    <main>
+        
+    </main>
+
     <footer>
         <p>Feito com ❤️ para fãs de Mistria!</p>
     </footer>
+
+    <!-- Estrutura do Painel de Notícias (inicialmente oculto) -->
+    <div id="news-panel-overlay">
+        <div id="news-panel">
+            <button class="close-button" onclick="toggleNewsPanel()">×</button>
+            <iframe src="about:blank" frameborder="0"></iframe>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script>

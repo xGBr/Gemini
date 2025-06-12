@@ -1,50 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estações - Guia Fields of Mistria</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <header>
-      <a href="index.html" class="back-button"> ‹ </a>
-      <h1>Colecionáveis por Estação</h1>
-    </header>
-    <main>
-      <div class="tabs">
-        <button onclick="mostrarConteudo('primavera')">Primavera</button>
-        <button onclick="mostrarConteudo('verao')">Verão</button>
-        <button onclick="mostrarConteudo('outono')">Outono</button>
-        <button onclick="mostrarConteudo('inverno')">Inverno</button>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Collectibles by Season - Fields of Mistria Guide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <header class="header-estacoes">
+    <a href="index.html" class="back-button"> ‹ </a>
+    <h1>Collectibles by Season</h1>
+  </header>
 
-      <div id="primavera" class="conteudo-estacao">
-        <h2>Primavera</h2>
-        <ul>
-          <li>Item 1 da Primavera (Ex: Flor da Manhã)</li>
-          <li>Item 2 da Primavera (Ex: Peixe-Sol da Primavera)</li>
-        </ul>
-      </div>
+  <main>
+    <div class="tabs">
+      <button class="tab-button active" onclick="mostrarConteudo('season_spring', this)">Spring</button>
+      <button class="tab-button" onclick="mostrarConteudo('season_summer', this)">Summer</button>
+      <button class="tab-button" onclick="mostrarConteudo('season_fall', this)">Fall</button>
+      <button class="tab-button" onclick="mostrarConteudo('season_winter', this)">Winter</button>
+    </div>
 
-      <div id="verao" class="conteudo-estacao" style="display: none">
-        <h2>Verão</h2>
-        <ul>
-          <li>Item 1 do Verão</li>
-        </ul>
-      </div>
-    </main>
-    <script>
-      function mostrarConteudo(estacaoId) {
-        // Esconde todos os conteúdos
-        document.querySelectorAll(".conteudo-estacao").forEach((div) => (div.style.display = "none"));
-        // Mostra o conteúdo da estação clicada
-        document.getElementById(estacaoId).style.display = "block";
-      }
-      // Mostrar a primeira aba por padrão
-      document.addEventListener("DOMContentLoaded", () => {
-        mostrarConteudo("primavera");
-      });
-    </script>
-  </body>
+    <div id="season_spring" class="tab-content active"></div>
+    <div id="season_summer" class="tab-content"></div>
+    <div id="season_fall" class="tab-content"></div>
+    <div id="season_winter" class="tab-content"></div>
+  </main>
+
+  <footer>
+    <p>Guia Fields of Mistria</p>
+  </footer>
+
+  <a href="index.html" class="floating-home-button" aria-label="Voltar para Início">
+    <img src="images/icons_gerais/home_icon.png" alt="Início" />
+  </a>
+
+  <!-- Banco de dados e scripts -->
+  <script src="js/database.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- Inicialização -->
+  <script>
+    window.onload = function () {
+      carregarConteudoEstacoes(); // função criada no novo script
+    };
+  </script>
+</body>
 </html>

@@ -1,44 +1,698 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arqueologia - Museu Fields of Mistria</title>
+    <title>Archaeology - Fields of Mistria Guide</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <header>
-        <a href="museu.html" class="back-button">←</a>
-        <h1>🏺 Arqueologia do Museu</h1>
+    <header class="header-museu">
+        <a href="museu.html" class="back-button"> ‹ </a>
+        <h1>🏺 Archaeology</h1>
     </header>
+
     <main>
-        <h2 class="page-subtitle">Artefatos e Minerais</h2>
-        <ul class="museum-list">
-            <li class="museum-item">
-                <img src="images/arqueo_geodo.png" alt="Geodo Antigo" class="item-icon"> <div class="item-details">
-                    <span class="item-name">Geodo Antigo</span>
-                    <span class="item-season">Estação: N/A (Encontrado)</span>
-                    <span class="item-location">Fonte: Quebrar pedras de geodo, Minas</span>
+        <div class="tabs">
+            <button class="tab-button active" onclick="mostrarConteudo('archaeology_by_set', this)">By Set</button>
+            <button class="tab-button" onclick="mostrarConteudo('archaeology_by_source', this)">By Source</button>
+        </div>
+
+        <!-- ================== ABA 1: POR CONJUNTO (BY SET) ================== -->
+        <div id="archaeology_by_set" class="tab-content active">
+            <h2 class="page-subtitle">Artifacts by Set</h2>
+
+            <div class="item-subcategory-card">
+                <h4>Aldarian</h4>
+                <div class="archaeology-table-container">
+                    <table class="archaeology-table">
+                        <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Aldarian_gauntlet.png" alt="Aldarian Gauntlet" class="item-icon"></td>
+                                <td>Aldarian Gauntlet</td>
+                                <td>The Narrows</td>
+                                <td>Rare</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_aldarian_gauntlet"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Aldarian_sword.png" alt="Aldarian Sword" class="item-icon"></td>
+                                <td>Aldarian Sword</td>
+                                <td>The Narrows</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_aldarian_sword"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Aldarian_war_banner.png" alt="Aldarian War Banner" class="item-icon"></td>
+                                <td>Aldarian War Banner</td>
+                                <td>The Narrows</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_aldarian_war_banner"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Family_crest_pendant.png" alt="Family Crest Pendant" class="item-icon"></td>
+                                <td>Family Crest Pendant</td>
+                                <td>The Narrows</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_family_crest_pendant"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Lost_crown_of_aldaria.png" alt="Lost Crown of Aldaria" class="item-icon"></td>
+                                <td>Lost Crown of Aldaria</td>
+                                <td>The Narrows</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_lost_crown_of_aldaria"> Donated</label></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="item-donate">
-                    <label><input type="checkbox" name="donated_geodo_antigo"> Entregue</label>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Caldosian</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Caldosian_breastplate.png" alt="Caldosian Breastplate" class="item-icon"></td>
+                              <td>Caldosian Breastplate</td>
+                              <td>The Eastern Road</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_caldosian_breastplate"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Caldosian_drinking_horn.png" alt="Caldosian Drinking Horn" class="item-icon"></td>
+                              <td>Caldosian Drinking Horn</td>
+                              <td>The Eastern Road</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_caldosian_drinking_horn"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Caldosian_emperor_bust.png" alt="Caldosian Emperor Bust" class="item-icon"></td>
+                              <td>Caldosian Emperor Bust</td>
+                              <td>The Eastern Road</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_caldosian_emperor_bust"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Caldosian_sword.png" alt="Caldosian Sword" class="item-icon"></td>
+                              <td>Caldosian Sword</td>
+                              <td>The Eastern Road</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_caldosian_sword"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Statuette_of_caldarus.png" alt="Statuette of Caldarus" class="item-icon"></td>
+                              <td>Statuette of Caldarus</td>
+                              <td>The Eastern Road</td>
+                              <td>Legendary</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_statuette_of_caldarus"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Alda</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Alda_bronze_sword.png" alt="Alda Bronze Sword" class="item-icon"></td>
+                              <td>Alda Bronze Sword</td>
+                              <td>Sweetwater Farm</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_alda_bronze_sword"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Alda_clay_pot.png" alt="Alda Clay Pot" class="item-icon"></td>
+                              <td>Alda Clay Pot</td>
+                              <td>Sweetwater Farm</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_alda_clay_pot"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Alda_feather_pendant.png" alt="Alda Feather Pendant" class="item-icon"></td>
+                              <td>Alda Feather Pendant</td>
+                              <td>Sweetwater Farm</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_alda_feather_pendant"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Alda_gem_bracelet.png" alt="Alda Gem Bracelet" class="item-icon"></td>
+                              <td>Alda Gem Bracelet</td>
+                              <td>Sweetwater Farm</td>
+                              <td>Legendary</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_alda_gem_bracelet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Alda_mural_tablet.png" alt="Alda Mural Tablet" class="item-icon"></td>
+                              <td>Alda Mural Tablet</td>
+                              <td>Sweetwater Farm</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_alda_mural_tablet"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Ancient</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Ancient_crystal_goblet.png" alt="Ancient Crystal Goblet" class="item-icon"></td>
+                              <td>Ancient Crystal Goblet</td>
+                              <td>The Western Ruins</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_ancient_crystal_goblet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Ancient_gold_coin.png" alt="Ancient Gold Coin" class="item-icon"></td>
+                              <td>Ancient Gold Coin</td>
+                              <td>The Western Ruins</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_ancient_gold_coin"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Ancient_horn_circlet.png" alt="Ancient Horn Circlet" class="item-icon"></td>
+                              <td>Ancient Horn Circlet</td>
+                              <td>The Western Ruins</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_ancient_horn_circlet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Ancient_royal_scepter.png" alt="Ancient Royal Scepter" class="item-icon"></td>
+                              <td>Ancient Royal Scepter</td>
+                              <td>The Western Ruins</td>
+                              <td>Legendary</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_ancient_royal_scepter"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Ancient_stone_lantern.png" alt="Ancient Stone Lantern" class="item-icon"></td>
+                              <td>Ancient Stone Lantern</td>
+                              <td>The Western Ruins</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_ancient_stone_lantern"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+            
+            <div class="item-subcategory-card">
+              <h4>Prehistoric</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Amber_trapped_insect.png" alt="Amber Trapped Insect" class="item-icon"></td>
+                              <td>Amber Trapped Insect</td>
+                              <td>The Beach</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_amber_trapped_insect"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Fossilized_egg.png" alt="Fossilized Egg" class="item-icon"></td>
+                              <td>Fossilized Egg</td>
+                              <td>The Beach</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_fossilized_egg"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Meteorite.png" alt="Meteorite" class="item-icon"></td>
+                              <td>Meteorite</td>
+                              <td>The Beach</td>
+                              <td>Legendary</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_meteorite"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Tiny_dinosaur_skeleton.png" alt="Tiny Dinosaur Skeleton" class="item-icon"></td>
+                              <td>Tiny Dinosaur Skeleton</td>
+                              <td>The Beach</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_tiny_dinosaur_skeleton"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Trilobite_fossil.png" alt="Trilobite Fossil" class="item-icon"></td>
+                              <td>Trilobite Fossil</td>
+                              <td>The Beach</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_trilobite_fossil"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Metals Of Mistria</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_copper_ore.png" alt="Perfect Copper Ore" class="item-icon"></td>
+                              <td>Perfect Copper Ore</td>
+                              <td>The Upper Mines (floors 1 - 19)</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_copper_ore"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_gold_ore.png" alt="Perfect Gold Ore" class="item-icon"></td>
+                              <td>Perfect Gold Ore</td>
+                              <td>The Lava Caves (floors 61 - 79)</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_gold_ore"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_iron_ore.png" alt="Perfect Iron Ore" class="item-icon"></td>
+                              <td>Perfect Iron Ore</td>
+                              <td>The Tide Caverns (floors 21 - 39)</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_iron_ore"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_mistril_ore.png" alt="Perfect Mistril Ore" class="item-icon"></td>
+                              <td>Perfect Mistril Ore</td>
+                              <td class="location-cell"><span class="spoiler-location blurred" onclick="revelarLocalizacao(this)">The Ancient Ruins (floors 81 - 99)</span></td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_mistril_ore"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_silver_ore.png" alt="Perfect Silver Ore" class="item-icon"></td>
+                              <td>Perfect Silver Ore</td>
+                              <td>The Deep Earth (floors 41 - 59)</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_silver_ore"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Gems Of Mistria</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_diamond.png" alt="Perfect Diamond" class="item-icon"></td>
+                              <td>Perfect Diamond</td>
+                              <td>The Lava Caves (floors 61 - 79)</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_diamond"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_emerald.png" alt="Perfect Emerald" class="item-icon"></td>
+                              <td>Perfect Emerald</td>
+                              <td>The Deep Earth (floors 41 - 59)</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_emerald"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_pink_diamond.png" alt="Perfect Pink Diamond" class="item-icon"></td>
+                              <td>Perfect Pink Diamond</td>
+                              <td class="location-cell"><span class="spoiler-location blurred" onclick="revelarLocalizacao(this)">The Ancient Ruins (floors 81 - 99)</span></td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_pink_diamond"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_ruby.png" alt="Perfect Ruby" class="item-icon"></td>
+                              <td>Perfect Ruby</td>
+                              <td>The Upper Mines (floors 1 - 19)</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_ruby"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Perfect_sapphire.png" alt="Perfect Sapphire" class="item-icon"></td>
+                              <td>Perfect Sapphire</td>
+                              <td>The Tide Caverns (floors 21 - 39)</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_perfect_sapphire"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>Unreleased Sets</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Dragon_claw.png" alt="Dragon Claw" class="item-icon"></td>
+                              <td>Dragon Claw</td>
+                              <td>Unreleased</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_dragon_claw"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Dragon_forged_bracelet.png" alt="Dragon Forged Bracelet" class="item-icon"></td>
+                              <td>Dragon Forged Bracelet</td>
+                              <td>Unreleased</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_dragon_forged_bracelet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Dragon_pact_tablet.png" alt="Dragon Pact Tablet" class="item-icon"></td>
+                              <td>Dragon Pact Tablet</td>
+                              <td>Unreleased</td>
+                              <td>Legendary</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_dragon_pact_tablet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Dragon_scale.png" alt="Dragon Scale" class="item-icon"></td>
+                              <td>Dragon Scale</td>
+                              <td>Unreleased</td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_dragon_scale"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Hardened_essence.png" alt="Hardened Essence" class="item-icon"></td>
+                              <td>Hardened Essence</td>
+                              <td>Unreleased</td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_hardened_essence"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
+
+        <!-- ================== ABA 2: POR FONTE (BY SOURCE) ================== -->
+        <div id="archaeology_by_source" class="tab-content">
+            <h2 class="page-subtitle">Artifacts by Source</h2>
+            
+            <div class="item-subcategory-card">
+              <h4>From Dig Spots</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                            <td><img src="images/itens/Archaeology/Black_tablet.png" alt="Black Tablet" class="item-icon"></td>
+                            <td>Black Tablet</td>
+                            <td class="location-cell">
+                                <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                <div><small>(requires <img src="images/icons/15px-Well_placed.png" class="inline-icon"> Well Placed Skill)</small></div>
+                            </td>
+                            <td>Uncommon</td>
+                            <td><div class="item-donate"><label><input type="checkbox" name="donated_black_tablet"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Completely_wrong_map.png" alt="Completely Wrong Map" class="item-icon"></td>
+                              <td>Completely Wrong Map</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                <div><small>(requires <img src="images/icons/15px-Well_placed.png" class="inline-icon"> Well Placed Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_completely_wrong_map"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Muttering_cube.png" alt="Muttering Cube" class="item-icon"></td>
+                              <td>Muttering Cube</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                <div><small>(requires <img src="images/icons/15px-Well_placed.png" class="inline-icon"> Well Placed Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_muttering_cube"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Unknown_dragon_statuette.png" alt="Unknown Dragon Statuette" class="item-icon"></td>
+                              <td>Unknown Dragon Statuette</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                <div><small>(requires <img src="images/icons/15px-Well_placed.png" class="inline-icon"> Well Placed Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_unknown_dragon_statuette"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Weightless_stone.png" alt="Weightless Stone" class="item-icon"></td>
+                              <td>Weightless Stone</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                <div><small>(requires <img src="images/icons/15px-Well_placed.png" class="inline-icon"> Well Placed Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_weightless_stone"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>From Fishing & Diving</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Coin_lump.png" alt="Coin Lump" class="item-icon"></td>
+                              <td>Coin Lump</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Fishing</div>
+                                <div><small>(requires <img src="images/icons/15px-Aquatic_antiquities.png" class="inline-icon"> Aquatic Antiquities Skill)</small></div>
+                              </td>
+                              <td>Rare</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_coin_lump"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Giant_fish_scale.png" alt="Giant Fish Scale" class="item-icon"></td>
+                              <td>Giant Fish Scale</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Fishing</div>
+                                <div><small>(requires <img src="images/icons/15px-Aquatic_antiquities.png" class="inline-icon"> Aquatic Antiquities Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_giant_fish_scale"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Rubber_fish.png" alt="Rubber Fish" class="item-icon"></td>
+                              <td>Rubber Fish</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Fishing</div>
+                                <div><small>(requires <img src="images/icons/15px-Aquatic_antiquities.png" class="inline-icon"> Aquatic Antiquities Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_rubber_fish"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Rusted_treasure_chest.png" alt="Rusted Treasure Chest" class="item-icon"></td>
+                              <td>Rusted Treasure Chest</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Fishing</div>
+                                <div><small>(requires <img src="images/icons/15px-Aquatic_antiquities.png" class="inline-icon"> Aquatic Antiquities Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_rusted_treasure_chest"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Water_sphere.png" alt="Water Sphere" class="item-icon"></td>
+                              <td>Water Sphere</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Fishing</div>
+                                <div><small>(requires <img src="images/icons/15px-Aquatic_antiquities.png" class="inline-icon"> Aquatic Antiquities Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_water_sphere"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Criminal_confession.png" alt="Criminal Confession" class="item-icon"></td>
+                              <td>Criminal Confession</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                <div><small>(requires <img src="images/icons/15px-Sunken_secrets.png" class="inline-icon"> Sunken Secrets Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_criminal_confession"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Mermaid's_comb.png" alt="Mermaid's Comb" class="item-icon"></td>
+                              <td>Mermaid's Comb</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                <div><small>(requires <img src="images/icons/15px-Sunken_secrets.png" class="inline-icon"> Sunken Secrets Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_mermaids_comb"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Rainbow_seaweed.png" alt="Rainbow Seaweed" class="item-icon"></td>
+                              <td>Rainbow Seaweed</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                <div><small>(requires <img src="images/icons/15px-Sunken_secrets.png" class="inline-icon"> Sunken Secrets Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_rainbow_seaweed"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Rock_with_a_hole.png" alt="Rock with a Hole" class="item-icon"></td>
+                              <td>Rock with a Hole</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                <div><small>(requires <img src="images/icons/15px-Sunken_secrets.png" class="inline-icon"> Sunken Secrets Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_rock_with_a_hole"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Rusted_shield.png" alt="Rusted Shield" class="item-icon"></td>
+                              <td>Rusted Shield</td>
+                              <td class="location-cell">
+                                <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                <div><small>(requires <img src="images/icons/15px-Sunken_secrets.png" class="inline-icon"> Sunken Secrets Skill)</small></div>
+                              </td>
+                              <td>Uncommon</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_rusted_shield"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+            <div class="item-subcategory-card">
+                <h4>From Mining</h4>
+                <div class="archaeology-table-container">
+                    <table class="archaeology-table">
+                        <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Diamond_backed_mirror.png" alt="Diamond-backed Mirror" class="item-icon"></td>
+                                <td>Diamond-backed Mirror</td>
+                                <td>The Mines</td>
+                                <td>Rare</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_diamond_backed_mirror"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Flint_arrowhead.png" alt="Flint Arrowhead" class="item-icon"></td>
+                                <td>Flint Arrowhead</td>
+                                <td>The Mines</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_flint_arrowhead"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Obsidian_blade.png" alt="Obsidian Blade" class="item-icon"></td>
+                                <td>Obsidian Blade</td>
+                                <td>The Mines</td>
+                                <td>Rare</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_obsidian_blade"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Shortcut_scroll.png" alt="Shortcut Scroll" class="item-icon"></td>
+                                <td>Shortcut Scroll</td>
+                                <td>The Mines</td>
+                                <td>Legendary</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_shortcut_scroll"> Donated</label></div></td>
+                            </tr>
+                            <tr>
+                                <td><img src="images/itens/Archaeology/Stone_horse.png" alt="Stone Horse" class="item-icon"></td>
+                                <td>Stone Horse</td>
+                                <td>The Mines</td>
+                                <td>Uncommon</td>
+                                <td><div class="item-donate"><label><input type="checkbox" name="donated_stone_horse"> Donated</label></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </li>
-            <li class="museum-item">
-                <img src="images/arqueo_fossil.png" alt="Fóssil Misterioso" class="item-icon"> <div class="item-details">
-                    <span class="item-name">Fóssil de Pata</span>
-                    <span class="item-season">Estação: N/A (Encontrado)</span>
-                    <span class="item-location">Fonte: Pontos de escavação na floresta</span>
-                </div>
-                <div class="item-donate">
-                    <label><input type="checkbox" name="donated_fossil_pata"> Entregue</label>
-                </div>
-            </li>
-            </ul>
+            </div>
+
+            <div class="item-subcategory-card">
+              <h4>From Dig Site (Mixed Sources)</h4>
+              <div class="archaeology-table-container">
+                  <table class="archaeology-table">
+                      <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Rarity</th><th>Donated</th></tr></thead>
+                      <tbody>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Clay.png" alt="Clay" class="item-icon"></td>
+                              <td>Clay</td>
+                              <td class="location-cell">
+                                  <div><img src="images/icons/20px-Mining_icon.png" class="inline-icon"> Mining</div>
+                                  <div><img src="images/icons/20px-Fishing_icon.png" class="inline-icon"> Diving</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_balor.png" class="inline-icon"> Balor's Wagon for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 50t</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_ryis.png" class="inline-icon"> Carpenter for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 50t</div>
+                                  <div><img src="images/icons/22px-Stone_refinery_craft.png" class="inline-icon"> Refining</div>
+                              </td>
+                              <td>N/A</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_clay"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Peat.png" alt="Peat" class="item-icon"></td>
+                              <td>Peat</td>
+                              <td class="location-cell">
+                                  <div><img src="images/icons/20px-Mining_icon.png" class="inline-icon"> Mining</div>
+                                  <div><img src="images/icons/22px-Stone_refinery_craft.png" class="inline-icon"> Refining</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_ryis.png" class="inline-icon"> Carpenter (with <img src="images/icons/15px-Steady_supplies.png" class="inline-icon"> Steady Supplies Skill) for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 50t</div>
+                              </td>
+                              <td>N/A</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_peat"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Shard_mass.png" alt="Shard Mass" class="item-icon"></td>
+                              <td>Shard Mass</td>
+                              <td class="location-cell">
+                                  <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_balor.png" class="inline-icon"> Balor's Wagon for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 80t</div>
+                                  <div><img src="images/icons/22px-Stone_refinery_craft.png" class="inline-icon"> Refining</div>
+                              </td>
+                              <td>N/A</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_shard_mass"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Shards.png" alt="Shards" class="item-icon"></td>
+                              <td>Shards</td>
+                              <td class="location-cell">
+                                  <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Dig Spots</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_balor.png" class="inline-icon"> Balor's Wagon for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 50t</div>
+                                  <div><img src="images/icons/22px-Stone_refinery_craft.png" class="inline-icon"> Refining</div>
+                              </td>
+                              <td>N/A</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_shards"> Donated</label></div></td>
+                          </tr>
+                          <tr>
+                              <td><img src="images/itens/Archaeology/Sod.png" alt="Sod" class="item-icon"></td>
+                              <td>Sod</td>
+                              <td class="location-cell">
+                                  <div><img src="images/icons/20px-Archaeology_icon.png" class="inline-icon"> Digging</div>
+                                  <div><img src="images/icons/20px-Mining_icon.png" class="inline-icon"> Mining</div>
+                                  <div><img src="images/icons/20px-Fp_wiki_ryis.png" class="inline-icon"> Carpenter (with <img src="images/icons/15px-Steady_supplies.png" class="inline-icon"> Steady Supplies Skill) for <img src="images/icons/18px-Tesserae_Icon.png" class="inline-icon"> 50t</div>
+                                  <div><img src="images/icons/22px-Stone_refinery_craft.png" class="inline-icon"> Refining</div>
+                              </td>
+                              <td>N/A</td>
+                              <td><div class="item-donate"><label><input type="checkbox" name="donated_sod"> Donated</label></div></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+            </div>
+
+        </div>
+
     </main>
+
     <footer>
         <p>Guia Fields of Mistria</p>
     </footer>
+    <a href="index.html" class="floating-home-button" aria-label="Voltar para Início">
+        <img src="images/icons_gerais/home_icon.png" alt="Início">
+    </a>
     <script src="js/script.js"></script>
 </body>
 </html>

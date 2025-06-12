@@ -8,6 +8,12 @@ body {
     color: #333;
 }
 
+/* Corpo da página de notícias, para ser transparente dentro do iframe */
+body.news-page-body {
+    background-color: transparent;
+}
+
+
 /* ==========================================================================
    2. LAYOUT PRINCIPAL DO SITE
    ========================================================================== */
@@ -745,14 +751,16 @@ footer {
 }
 
 /* --------------------------------------------------------------------------
-   4.4 Seção Museu Peixes (Layout de Tabela)
+   4.4 Seção Museu Peixes e Arqueologia (Layout de Tabela)
    -------------------------------------------------------------------------- */
-.fish-table-container {
+.fish-table-container,
+.archaeology-table-container {
     overflow-x: auto;
     width: 100%;
 }
 
-.fish-table {
+.fish-table,
+.archaeology-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
@@ -761,7 +769,8 @@ footer {
     table-layout: fixed;
 }
 
-.fish-table thead th {
+.fish-table thead th,
+.archaeology-table thead th {
     background-color: #32A89E;
     color: white;
     font-weight: bold;
@@ -773,11 +782,13 @@ footer {
     vertical-align: middle;
     word-wrap: break-word;
 }
-.fish-table thead th:last-child {
+.fish-table thead th:last-child,
+.archaeology-table thead th:last-child {
     border-right: none;
 }
 
-.fish-table tbody td {
+.fish-table tbody td,
+.archaeology-table tbody td {
     padding: 8px 10px;
     border-bottom: 1px solid #e0e0e0;
     border-right: 1px dotted #d1d1d1;
@@ -786,49 +797,44 @@ footer {
     text-align: left;
     word-wrap: break-word;
 }
-.fish-table tbody td:last-child {
+.fish-table tbody td:last-child,
+.archaeology-table tbody td:last-child {
     border-right: none;
 }
-.fish-table tbody tr:nth-child(even) {
+.fish-table tbody tr:nth-child(even),
+.archaeology-table tbody tr:nth-child(even) {
     background-color: #f8f9fa;
 }
 
-/* Colunas com largura e alinhamento específicos */
-.fish-table th:nth-child(1),
-.fish-table td:nth-child(1) {
-    width: 60px;
-    text-align: center;
-}
-.fish-table th:nth-child(2),
-.fish-table td:nth-child(2) {
-    width: 120px;
-}
-.fish-table th:nth-child(3),
-.fish-table td:nth-child(3) {
-    width: 120px;
-}
-.fish-table th:nth-child(4),
-.fish-table td:nth-child(4) {
-    width: 80px;
-}
-.fish-table th:nth-child(5),
-.fish-table td:nth-child(5) {
-    width: 80px;
-}
-.fish-table th:nth-child(6) {
-    width: 100px;
-    text-align: center;
-}
-.fish-table td:nth-child(6) {
-    width: 100px;
-}
-.fish-table th:nth-child(7),
-.fish-table td:nth-child(7) {
-    width: 90px;
-    text-align: center;
-}
+/* Larguras e Alinhamentos da Tabela de Peixes (7 colunas) */
+.fish-table:not(.eight-columns) th:nth-child(1), .fish-table:not(.eight-columns) td:nth-child(1) { width: 10%; text-align: center; } /* Photo */
+.fish-table:not(.eight-columns) th:nth-child(2), .fish-table:not(.eight-columns) td:nth-child(2) { width: 25%; } /* Name */
+.fish-table:not(.eight-columns) th:nth-child(3), .fish-table:not(.eight-columns) td:nth-child(3) { width: 20%; } /* Weather */
+.fish-table:not(.eight-columns) th:nth-child(4), .fish-table:not(.eight-columns) td:nth-child(4) { width: 10%; } /* Rarity */
+.fish-table:not(.eight-columns) th:nth-child(5), .fish-table:not(.eight-columns) td:nth-child(5) { width: 10%; } /* Size */
+.fish-table:not(.eight-columns) th:nth-child(6), .fish-table:not(.eight-columns) td:nth-child(6) { width: 15%; text-align: center; } /* Appearance */
+.fish-table:not(.eight-columns) th:nth-child(7), .fish-table:not(.eight-columns) td:nth-child(7) { width: 10%; text-align: center; } /* Donated */
 
-.fish-table .item-icon {
+/* Larguras e Alinhamentos da Tabela de Peixes (8 colunas - Mines) */
+.fish-table.eight-columns th:nth-child(1), .fish-table.eight-columns td:nth-child(1) { width: 10%; text-align: center; } /* Photo */
+.fish-table.eight-columns th:nth-child(2), .fish-table.eight-columns td:nth-child(2) { width: 16%; } /* Name */
+.fish-table.eight-columns th:nth-child(3), .fish-table.eight-columns td:nth-child(3) { width: 18%; } /* Location */
+.fish-table.eight-columns th:nth-child(4), .fish-table.eight-columns td:nth-child(4) { width: 12%; } /* Floors */
+.fish-table.eight-columns th:nth-child(5), .fish-table.eight-columns td:nth-child(5) { width: 10%; } /* Rarity */
+.fish-table.eight-columns th:nth-child(6), .fish-table.eight-columns td:nth-child(6) { width: 10%; } /* Size */
+.fish-table.eight-columns th:nth-child(7), .fish-table.eight-columns td:nth-child(7) { width: 12%; text-align: center; } /* Appearance */
+.fish-table.eight-columns th:nth-child(8), .fish-table.eight-columns td:nth-child(8) { width: 12%; text-align: center; } /* Donated */
+
+/* Larguras e Alinhamentos da Tabela de Arqueologia */
+.archaeology-table th:nth-child(1), .archaeology-table td:nth-child(1) { width: 15%; text-align: center; } /* Image */
+.archaeology-table th:nth-child(2), .archaeology-table td:nth-child(2) { width: 25%; } /* Name */
+.archaeology-table th:nth-child(3), .archaeology-table td:nth-child(3) { width: 40%; } /* Location */
+.archaeology-table th:nth-child(4), .archaeology-table td:nth-child(4) { width: 10%; } /* Rarity */
+.archaeology-table th:nth-child(5), .archaeology-table td:nth-child(5) { width: 10%; text-align: center; } /* Donated */
+
+
+.fish-table .item-icon,
+.archaeology-table .item-icon {
     width: 48px;
     height: 48px;
     object-fit: contain;
@@ -838,12 +844,24 @@ footer {
     background-color: #fff;
 }
 
-.fish-table .icon-text-cell {
+.fish-table .icon-text-cell,
+.archaeology-table .icon-text-cell,
+.archaeology-table .location-cell {
     white-space: normal;
 }
 
+.archaeology-table .location-cell div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.archaeology-table .location-cell div:last-child {
+    margin-bottom: 0;
+}
+
 .fish-table .icon-text-cell .inline-icon,
-.fish-table .icon-text-cell .appearance-icon {
+.fish-table .icon-text-cell .appearance-icon,
+.archaeology-table .location-cell .inline-icon {
     display: inline-block;
     vertical-align: middle;
     object-fit: contain;
@@ -862,24 +880,27 @@ footer {
     margin-right: 0;
 }
 
-.fish-table .item-donate {
+.fish-table .item-donate,
+.archaeology-table .item-donate {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.fish-table .item-donate label {
+.fish-table .item-donate label,
+.archaeology-table .item-donate label {
     display: flex;
     align-items: center;
     font-size: 0.9em;
     color: #333;
     gap: 4px;
 }
-.fish-table .item-donate input[type="checkbox"] {
+.fish-table .item-donate input[type="checkbox"],
+.archaeology-table .item-donate input[type="checkbox"] {
     transform: scale(1.1);
 }
 
 /* --------------------------------------------------------------------------
-   4.5 Estilos para Itens Doados
+   4.5 Estilos para Itens Doados e Spoilers
    -------------------------------------------------------------------------- */
 .donated-item {
     background-color: #d4edda !important; /* Verde claro */
@@ -891,9 +912,123 @@ footer {
     transition: background-color 0.3s ease-in-out;
 }
 
+.spoiler-location.blurred {
+    background-color: #ddd;
+    color: #ddd;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+}
+.spoiler-location.blurred:hover {
+    background-color: #ccc;
+    color: #ccc;
+}
+
+/* --------------------------------------------------------------------------
+   4.6 Seção de Updates (Página Inicial e Notícias)
+   -------------------------------------------------------------------------- */
+.update-card {
+    background-color: #f0f8f7;
+    border-radius: 0;
+    border: 2px solid #257F78;
+    box-shadow: 3px 3px 0px #1C635D;
+    padding: 20px;
+    margin-top: 20px;
+}
+.news-page-body .update-card {
+    border: none;
+    box-shadow: none;
+    margin-top: 0;
+    padding: 10px;
+}
+
+.update-card h3 {
+    font-size: 1.5em;
+    color: #1C635D;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3DCFCA;
+    display: flex;
+    align-items: center;
+}
+
+.update-card h3 img {
+    height: 28px;
+    width: 28px;
+    margin-right: 10px;
+}
+
+.update-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #ccc;
+}
+.update-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.update-date {
+    display: block;
+    font-size: 0.8em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.update-title {
+    font-size: 1.2em;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.update-description {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #444;
+    margin: 0;
+}
+
+.roadmap-list {
+    list-style: none;
+    padding-left: 10px;
+    margin: 10px 0;
+}
+
+.roadmap-list ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.roadmap-list li {
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.roadmap-list li span {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.roadmap-list .status-done {
+    color: #28a745; /* green */
+}
+.roadmap-list .status-progress {
+    color: #ffc107; /* orange */
+}
+.roadmap-list .status-planned {
+    color: #6c757d; /* grey */
+}
 
 /* --------------------------------------------------------------------------
    5. ELEMENTOS DE UI INTERATIVOS
+   -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   5.1 Botão Flutuante "Home"
    -------------------------------------------------------------------------- */
 .floating-home-button {
     position: fixed;
@@ -925,4 +1060,100 @@ footer {
 .floating-home-button:active {
     background-color: #4A90B6;
     transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   5.2 Painel de Notícias
+   -------------------------------------------------------------------------- */
+#news-panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* Começa oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#news-panel-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+#news-panel {
+    position: relative;
+    background-color: #E6F6F2;
+    padding: 20px;
+    width: 90%;
+    max-width: 700px;
+    height: 80vh;
+    border-radius: 0;
+    border: 2px solid #257F78;
+    box-shadow: 5px 5px 0px #1C635D;
+    display: flex;
+    flex-direction: column;
+}
+
+#news-panel .close-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    background-color: #E74C3C;
+    color: white;
+    border: 2px solid #a02a1c;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0px #8b2418;
+    transition: all 0.2s ease;
+}
+#news-panel .close-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+#news-panel .close-button:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+}
+
+#news-panel iframe {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #3DCFCA;
+}
+
+/* --------------------------------------------------------------------------
+   5.3 Barra de Rolagem Minimalista
+   -------------------------------------------------------------------------- */
+/* Para navegadores WebKit (Chrome, Safari, Edge, etc.) */
+::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+::-webkit-scrollbar-track {
+    background: transparent; /* Fundo da trilha transparente */
+}
+::-webkit-scrollbar-thumb {
+    background-color: #5D4037; /* Cor do puxador (a mesma do header) */
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 2px solid #E6F6F2; /* Cor de fundo para criar uma borda */
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #32A89E; /* Cor ao passar o mouse */
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #5D4037 #E6F6F2;
 }
