@@ -132,7 +132,7 @@ function toggleNewsPanel() {
     if (isActive) {
         overlay.classList.remove('active');
     } else {
-        // Adiciona um timestamp para evitar o cache do iframe e sempre carregar a última versão
+        // Adiciona um timestamp para evitar o cache do iframe
         iframe.src = `news.html?t=${new Date().getTime()}`;
         overlay.classList.add('active');
     }
@@ -226,6 +226,108 @@ function popularFloraTodasEstacoes() {
     });
 }
 
+/**
+ * Popula a página estacoes.html com dados agregados do banco de dados.
+ */
+function carregarConteudoEstacoes() {
+    const estacoes = ['spring', 'summer', 'fall', 'winter'];
+    const secoes = {
+        flora: { titulo: 'Flora', campos: ['Crop', 'Flower', 'Forageable'] },
+        insetos: { titulo: 'Insects', tabela: 'insects' },
+        peixes: { titulo: 'Fish', tabela: 'fish' },
+    };
+
+    estacoes.forEach(estacao => {
+        const container = document.getElementById(`season_${estacao}`);
+        if (!container) return;
+
+        container.innerHTML = `<h2 class="page-subtitle">${capitalize(estacao)} Collectibles</h2>`;
+
+        // Flora
+        const floraSection = document.createElement('div');
+        const floraItems = database.flora.filter(item => item.season?.includes(estacao));
+        if (floraItems.length > 0) {
+            floraSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🌿 Flora</h4></div>`;
+            const listContainer = document.createElement('ul');
+            listContainer.className = 'item-list';
+            floraItems.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'list-item-entry';
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="item-icon">
+                    <div class="item-details">
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-location">${item.desc}</span>
+                    </div>
+                    <div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Delivered</label></div>`;
+                listContainer.appendChild(li);
+            });
+            floraSection.querySelector('.item-subcategory-card').appendChild(listContainer);
+            container.appendChild(floraSection);
+        }
+
+        // Insetos
+        const insetos = database.insects.filter(item => item.season?.includes(estacao));
+        if (insetos.length > 0) {
+            const insectSection = document.createElement('div');
+            insectSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🐞 Insects</h4>${criarTabelaInsects(insetos)}</div>`;
+            container.appendChild(insectSection);
+        }
+
+        // Peixes
+        const peixes = database.fish.filter(item => item.season?.includes(estacao));
+        if (peixes.length > 0) {
+            const fishSection = document.createElement('div');
+            fishSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🐟 Fish</h4>${criarTabelaPeixes(peixes)}</div>`;
+            container.appendChild(fishSection);
+        }
+    });
+    // Re-inicializa os checkboxes na página recém-populada
+    inicializarStatusDoacao();
+}
+
+function criarTabelaInsects(insetos) {
+    return `<div class="insect-table-container"><table class="insect-table">
+        <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Time</th><th>Weather</th><th>Rarity</th><th>Donated</th></tr></thead>
+        <tbody>
+            ${insetos.map(item => `
+                <tr>
+                    <td><img src="${item.img}" alt="${item.name}" class="item-icon"></td>
+                    <td>${item.name}</td>
+                    <td>${item.location}</td>
+                    <td>${item.time}</td>
+                    <td>${item.weather}</td>
+                    <td>${item.rarity}</td>
+                    <td><div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Donated</label></div></td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table></div>`;
+}
+
+function criarTabelaPeixes(peixes) {
+    return `<div class="fish-table-container"><table class="fish-table">
+        <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Weather</th><th>Rarity</th><th>Appearance</th><th>Donated</th></tr></thead>
+        <tbody>
+            ${peixes.map(item => `
+                <tr>
+                    <td><img src="${item.img}" alt="${item.name}" class="item-icon"></td>
+                    <td>${item.name}</td>
+                    <td>${item.location}</td>
+                    <td>${item.weather}</td>
+                    <td>${item.rarity}</td>
+                    <td class="icon-text-cell">${item.appearance.map(app => `<img src="images/itens/Fish/shadow/${app}" class="appearance-icon">`).join(' ')}</td>
+                    <td><div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Donated</label></div></td>
+                </tr>
+            `).join('')}
+        </tbody>
+    </table></div>`;
+}
+
+function capitalize(palavra) {
+    return palavra.charAt(0).toUpperCase() + palavra.slice(1);
+}
+
 
 /* ==========================================================================
    4. EXECUÇÃO NO CARREGAMENTO DA PÁGINA
@@ -233,40 +335,27 @@ function popularFloraTodasEstacoes() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Inicialização do sistema de abas ---
-    const todosOsConjuntosDeTabs = document.querySelectorAll('.tabs');
-    todosOsConjuntosDeTabs.forEach(tabContainer => {
-        let abaAtivaNoHtml = tabContainer.querySelector('.tab-button.active');
-        if (abaAtivaNoHtml) {
-            // Se uma aba já está marcada como ativa no HTML, garante que seu conteúdo também esteja
-            const onclickAttr = abaAtivaNoHtml.getAttribute('onclick');
-            if(onclickAttr) {
-                const idConteudoAtivo = onclickAttr.match(/'([^']+)'/)[1];
-                const elementoConteudoAtivo = document.getElementById(idConteudoAtivo);
-                if (elementoConteudoAtivo) {
-                    elementoConteudoAtivo.classList.add('active');
-                }
-            }
-        } else {
-            // Se nenhuma aba estiver ativa, ativa a primeira por padrão
-            const primeiroBotao = tabContainer.querySelector('.tab-button');
-            if (primeiroBotao) {
-                const onclickAttr = primeiroBotao.getAttribute('onclick');
-                if (onclickAttr) {
-                    const match = onclickAttr.match(/'([^']+)'/);
-                    if (match && match[1]) {
-                        const primeiroConteudoId = match[1];
-                        mostrarConteudo(primeiroConteudoId, primeiroBotao);
-                    }
-                }
-            }
+    const tabContainer = document.querySelector('.tabs');
+    if (tabContainer) {
+        let activeTab = tabContainer.querySelector('.tab-button.active');
+        if (!activeTab) {
+            activeTab = tabContainer.querySelector('.tab-button');
         }
-    });
+        if (activeTab) {
+            activeTab.click();
+        }
+    }
 
-    // --- Inicialização do sistema de status de doação (vermelho/verde) ---
-    inicializarStatusDoacao();
+    // --- Lógicas de renderização específicas de cada página ---
+    if (document.getElementById('all_seasons_crop')) {
+        popularFloraTodasEstacoes();
+    }
+    if (document.getElementById('season_spring')) {
+        carregarConteudoEstacoes();
+    }
     
-    // --- Lógica específica para a página de Flora ---
-    popularFloraTodasEstacoes();
+    // --- Inicialização do sistema de status de doação ---
+    inicializarStatusDoacao();
 
     // --- Fechar painel de notícias ao clicar fora (no overlay) ---
     const overlay = document.getElementById('news-panel-overlay');
@@ -278,134 +367,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-/* ==========================================================================
-   5. Todas as estacoes
-   ========================================================================== */
-
-function carregarConteudoEstacoes() {
-  const estacoes = ['spring', 'summer', 'fall', 'winter'];
-  const secoes = {
-    flora: { titulo: 'Flora', campos: ['Crop', 'Flower', 'Forageable'] },
-    insetos: { titulo: 'Insects', tabela: 'insects' },
-    peixes: { titulo: 'Fish', tabela: 'fish' },
-  };
-
-  estacoes.forEach(estacao => {
-    const container = document.getElementById(`season_${estacao}`);
-    if (!container) return;
-
-    container.innerHTML = ''; // Limpa antes de adicionar
-
-    // Flora
-    const floraSection = document.createElement('section');
-    floraSection.innerHTML = `<h2>🌿 Flora (${capitalize(estacao)})</h2>`;
-    secoes.flora.campos.forEach(tipo => {
-      const itens = database.flora.filter(item => item.season?.includes(estacao) && item.type === tipo);
-      if (itens.length > 0) {
-        const card = criarListaItens(tipo, itens);
-        floraSection.appendChild(card);
-      }
-    });
-    container.appendChild(floraSection);
-
-    // Insetos
-    const insetos = database.insects.filter(item => item.season?.includes(estacao));
-    if (insetos.length > 0) {
-      const insetosSection = document.createElement('section');
-      insetosSection.innerHTML = `<h2>🐞 Insects (${capitalize(estacao)})</h2>`;
-      insetosSection.appendChild(criarTabelaInsects(insetos));
-      container.appendChild(insetosSection);
-    }
-
-    // Peixes
-    const peixes = database.fish.filter(item => item.season?.includes(estacao));
-    if (peixes.length > 0) {
-      const peixesSection = document.createElement('section');
-      peixesSection.innerHTML = `<h2>🐟 Fish (${capitalize(estacao)})</h2>`;
-      peixesSection.appendChild(criarTabelaPeixes(peixes));
-      container.appendChild(peixesSection);
-    }
-  });
-}
-
-function criarListaItens(tipo, itens) {
-  const card = document.createElement('div');
-  card.className = 'item-subcategory-card';
-  card.innerHTML = `<h4>${tipo}s</h4>`;
-  const ul = document.createElement('ul');
-  ul.className = 'item-list';
-
-  itens.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'list-item-entry';
-    li.innerHTML = `
-      <img src="${item.icon}" alt="${item.name}" class="item-icon" />
-      <div class="item-details">
-        <span class="item-name">${item.name}</span>
-        ${item.location ? `<span class="item-location">${item.location}</span>` : ''}
-        ${item.seedPrice ? `<span class="item-seed-price">${item.seedPrice}</span>` : ''}
-      </div>
-      <div class="item-donate">
-        <label><input type="checkbox" name="donated_${item.name}_${item.season}" /> Delivered</label>
-      </div>`;
-    ul.appendChild(li);
-  });
-
-  card.appendChild(ul);
-  return card;
-}
-
-function criarTabelaInsects(insetos) {
-  const tabela = document.createElement('table');
-  tabela.className = 'insect-table';
-  tabela.innerHTML = `
-    <thead>
-      <tr>
-        <th>Photo</th><th>Name</th><th>Location</th><th>Time</th><th>Weather</th><th>Rarity</th><th>Donated</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${insetos.map(item => `
-        <tr>
-          <td><img src="${item.icon}" alt="${item.name}" class="item-icon" /></td>
-          <td>${item.name}</td>
-          <td>${item.location}</td>
-          <td>${item.time}</td>
-          <td>${item.weather}</td>
-          <td>${item.rarity}</td>
-          <td><label><input type="checkbox" name="donated_${item.name}" /> Donated</label></td>
-        </tr>
-      `).join('')}
-    </tbody>`;
-  return tabela;
-}
-
-function criarTabelaPeixes(peixes) {
-  const tabela = document.createElement('table');
-  tabela.className = 'fish-table';
-  tabela.innerHTML = `
-    <thead>
-      <tr>
-        <th>Photo</th><th>Name</th><th>Location</th><th>Weather</th><th>Rarity</th><th>Size</th><th>Donated</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${peixes.map(item => `
-        <tr>
-          <td><img src="${item.icon}" alt="${item.name}" class="item-icon" /></td>
-          <td>${item.name}</td>
-          <td>${item.location}</td>
-          <td>${item.weather}</td>
-          <td>${item.rarity}</td>
-          <td>${item.size}</td>
-          <td><label><input type="checkbox" name="donated_${item.name}" /> Donated</label></td>
-        </tr>
-      `).join('')}
-    </tbody>`;
-  return tabela;
-}
-
-function capitalize(palavra) {
-  return palavra.charAt(0).toUpperCase() + palavra.slice(1);
-}
