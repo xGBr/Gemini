@@ -7,7 +7,7 @@
  * Seções:
  * 1. LÓGICA DE NAVEGAÇÃO E UI (Abas, Scroll, Spoilers, Painel de Notícias)
  * 2. LÓGICA DE DADOS E ESTADO (Checkboxes de Doação)
- * 3. LÓGICA ESPECÍFICA DE PÁGINAS (Ex: Flora)
+ * 3. LÓGICA DE RENDERIZAÇÃO DINÂMICA
  * 4. EXECUÇÃO NO CARREGAMENTO DA PÁGINA
  * ==========================================================================
  */
@@ -23,21 +23,13 @@
  */
 function mostrarConteudo(idConteudo, elementoBotao) {
     let containerDeTabs = elementoBotao.closest('main') || document.body;
-    containerDeTabs.querySelectorAll('.tab-content').forEach(div => {
-        div.classList.remove('active');
-    });
-
+    containerDeTabs.querySelectorAll('.tab-content').forEach(div => div.classList.remove('active'));
     let barraDeAbas = elementoBotao.closest('.tabs');
     if (barraDeAbas) {
-        barraDeAbas.querySelectorAll('.tab-button').forEach(btn => {
-            btn.classList.remove('active');
-        });
+        barraDeAbas.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
     }
-
     const conteudoAlvo = document.getElementById(idConteudo);
-    if (conteudoAlvo) {
-        conteudoAlvo.classList.add('active');
-    }
+    if (conteudoAlvo) conteudoAlvo.classList.add('active');
     elementoBotao.classList.add('active');
 }
 
@@ -166,12 +158,16 @@ function inicializarStatusDoacao() {
     }
 
     allCheckboxes.forEach(checkbox => {
-        const storedValue = localStorage.getItem(storagePrefix + checkbox.name);
+        // Usa o 'name' do checkbox como chave única para o localStorage.
+        // Garante que o mesmo item em páginas diferentes seja sincronizado se tiver o mesmo 'name'.
+        const key = storagePrefix + checkbox.name;
+        const storedValue = localStorage.getItem(key);
+        
         checkbox.checked = storedValue === 'true';
         applyDonationStatusStyle(checkbox); // Aplica o estilo inicial
 
         checkbox.addEventListener('change', function() {
-            localStorage.setItem(storagePrefix + this.name, this.checked);
+            localStorage.setItem(key, this.checked);
             applyDonationStatusStyle(this); // Atualiza o estilo na mudança
         });
     });
@@ -179,7 +175,7 @@ function inicializarStatusDoacao() {
 
 
 /* ==========================================================================
-   3. LÓGICA ESPECÍFICA DE PÁGINAS
+   3. LÓGICA DE RENDERIZAÇÃO DINÂMICA E ESPECÍFICA DE PÁGINAS
    ========================================================================== */
 
 /**
@@ -187,6 +183,11 @@ function inicializarStatusDoacao() {
  * os itens das outras abas de estação.
  */
 function popularFloraTodasEstacoes() {
+    // Só executa se estiver na página correta
+    if (!document.getElementById('flora_all_seasons')) {
+        return;
+    }
+
     const abasEstacoesIds = ['flora_spring', 'flora_summer', 'flora_fall', 'flora_winter'];
     const agregadosDestino = {
         Crop: document.querySelector('#all_seasons_crop .item-list'),
@@ -194,17 +195,14 @@ function popularFloraTodasEstacoes() {
         Forageable: document.querySelector('#all_seasons_forageable .item-list')
     };
 
-    // Só executa se estiver na página de flora e os elementos existirem
     if (!agregadosDestino.Crop || !agregadosDestino.Flower || !agregadosDestino.Forageable) {
         return;
     }
 
-    // Limpa as listas agregadas antes de popular
     for (const key in agregadosDestino) {
         agregadosDestino[key].innerHTML = '';
     }
 
-    // Itera sobre cada aba de estação
     abasEstacoesIds.forEach(idAba => {
         const abaConteudo = document.getElementById(idAba);
         if (abaConteudo) {
@@ -212,7 +210,7 @@ function popularFloraTodasEstacoes() {
             cardsSubcategoria.forEach(card => {
                 const listaItensOriginal = card.querySelector('.item-list');
                 if (listaItensOriginal) {
-                    const tipoCategoria = listaItensOriginal.dataset.category; // Crop, Flower, Forageable
+                    const tipoCategoria = listaItensOriginal.dataset.category;
                     if (tipoCategoria && agregadosDestino[tipoCategoria]) {
                         const itens = listaItensOriginal.querySelectorAll('.list-item-entry');
                         itens.forEach(item => {
@@ -230,67 +228,29 @@ function popularFloraTodasEstacoes() {
  * Popula a página estacoes.html com dados agregados do banco de dados.
  */
 function carregarConteudoEstacoes() {
-    const estacoes = ['spring', 'summer', 'fall', 'winter'];
-    const secoes = {
-        flora: { titulo: 'Flora', campos: ['Crop', 'Flower', 'Forageable'] },
-        insetos: { titulo: 'Insects', tabela: 'insects' },
-        peixes: { titulo: 'Fish', tabela: 'fish' },
-    };
+    // Só executa se estiver na página de estações e se o database.js foi carregado
+    if (!document.getElementById('season_spring') || typeof database === 'undefined') {
+        return;
+    }
 
-    estacoes.forEach(estacao => {
-        const container = document.getElementById(`season_${estacao}`);
-        if (!container) return;
+    const seasons = ['spring', 'summer', 'fall', 'winter'];
 
-        container.innerHTML = `<h2 class="page-subtitle">${capitalize(estacao)} Collectibles</h2>`;
-
-        // Flora
-        const floraSection = document.createElement('div');
-        const floraItems = database.flora.filter(item => item.season?.includes(estacao));
-        if (floraItems.length > 0) {
-            floraSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🌿 Flora</h4></div>`;
-            const listContainer = document.createElement('ul');
-            listContainer.className = 'item-list';
-            floraItems.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'list-item-entry';
-                li.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}" class="item-icon">
-                    <div class="item-details">
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-location">${item.desc}</span>
-                    </div>
-                    <div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Delivered</label></div>`;
-                listContainer.appendChild(li);
-            });
-            floraSection.querySelector('.item-subcategory-card').appendChild(listContainer);
-            container.appendChild(floraSection);
-        }
-
-        // Insetos
-        const insetos = database.insects.filter(item => item.season?.includes(estacao));
-        if (insetos.length > 0) {
-            const insectSection = document.createElement('div');
-            insectSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🐞 Insects</h4>${criarTabelaInsects(insetos)}</div>`;
-            container.appendChild(insectSection);
-        }
-
-        // Peixes
-        const peixes = database.fish.filter(item => item.season?.includes(estacao));
-        if (peixes.length > 0) {
-            const fishSection = document.createElement('div');
-            fishSection.innerHTML = `<div class="item-subcategory-card"><h4 class="season-category-title">🐟 Fish</h4>${criarTabelaPeixes(peixes)}</div>`;
-            container.appendChild(fishSection);
-        }
-    });
-    // Re-inicializa os checkboxes na página recém-populada
-    inicializarStatusDoacao();
-}
-
-function criarTabelaInsects(insetos) {
-    return `<div class="insect-table-container"><table class="insect-table">
-        <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Time</th><th>Weather</th><th>Rarity</th><th>Donated</th></tr></thead>
-        <tbody>
-            ${insetos.map(item => `
+    // Funções de template para criar o HTML
+    const templates = {
+        cardHeader: (icon, title) => `<div class="item-subcategory-card"><h4 class="season-category-title">${icon} ${title}</h4>`,
+        cardFooter: `</div>`,
+        floraList: (items) => `<ul class="item-list">${items.map(item => `
+            <li class="list-item-entry">
+                <img src="${item.img}" alt="${item.name}" class="item-icon">
+                <div class="item-details">
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-location">${item.desc}</span>
+                </div>
+                <div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Delivered</label></div>
+            </li>`).join('')}</ul>`,
+        insectTable: (items) => `<div class="insect-table-container"><table class="insect-table">
+            <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Time</th><th>Weather</th><th>Rarity</th><th>Donated</th></tr></thead>
+            <tbody>${items.map(item => `
                 <tr>
                     <td><img src="${item.img}" alt="${item.name}" class="item-icon"></td>
                     <td>${item.name}</td>
@@ -299,17 +259,10 @@ function criarTabelaInsects(insetos) {
                     <td>${item.weather}</td>
                     <td>${item.rarity}</td>
                     <td><div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Donated</label></div></td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table></div>`;
-}
-
-function criarTabelaPeixes(peixes) {
-    return `<div class="fish-table-container"><table class="fish-table">
-        <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Weather</th><th>Rarity</th><th>Appearance</th><th>Donated</th></tr></thead>
-        <tbody>
-            ${peixes.map(item => `
+                </tr>`).join('')}</tbody></table></div>`,
+        fishTable: (items) => `<div class="fish-table-container"><table class="fish-table">
+            <thead><tr><th>Photo</th><th>Name</th><th>Location</th><th>Weather</th><th>Rarity</th><th>Appearance</th><th>Donated</th></tr></thead>
+            <tbody>${items.map(item => `
                 <tr>
                     <td><img src="${item.img}" alt="${item.name}" class="item-icon"></td>
                     <td>${item.name}</td>
@@ -318,10 +271,26 @@ function criarTabelaPeixes(peixes) {
                     <td>${item.rarity}</td>
                     <td class="icon-text-cell">${item.appearance.map(app => `<img src="images/itens/Fish/shadow/${app}" class="appearance-icon">`).join(' ')}</td>
                     <td><div class="item-donate"><label><input type="checkbox" name="donated_${item.id}"> Donated</label></div></td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table></div>`;
+                </tr>`).join('')}</tbody></table></div>`,
+    };
+
+    seasons.forEach(season => {
+        const seasonContainer = document.getElementById(`season_${season}`);
+        if (!seasonContainer) return;
+
+        let finalHtml = `<h2 class="page-subtitle">${capitalize(season)} Collectibles</h2>`;
+        
+        const flora = database.flora.filter(i => i.season.includes(season));
+        if (flora.length) finalHtml += templates.cardHeader('🌿', 'Flora') + templates.floraList(flora) + templates.cardFooter;
+
+        const insects = database.insects.filter(i => i.season.includes(season));
+        if (insects.length) finalHtml += templates.cardHeader('🐞', 'Insects') + templates.insectTable(insects) + templates.cardFooter;
+
+        const fish = database.fish.filter(i => i.season.includes(season));
+        if (fish.length) finalHtml += templates.cardHeader('🐟', 'Fish') + templates.fishTable(fish) + templates.cardFooter;
+
+        seasonContainer.innerHTML = finalHtml;
+    });
 }
 
 function capitalize(palavra) {
@@ -342,19 +311,16 @@ document.addEventListener('DOMContentLoaded', () => {
             activeTab = tabContainer.querySelector('.tab-button');
         }
         if (activeTab) {
+            // Usa click() para garantir que a função mostrarConteudo seja chamada corretamente
             activeTab.click();
         }
     }
 
     // --- Lógicas de renderização específicas de cada página ---
-    if (document.getElementById('all_seasons_crop')) {
-        popularFloraTodasEstacoes();
-    }
-    if (document.getElementById('season_spring')) {
-        carregarConteudoEstacoes();
-    }
+    popularFloraTodasEstacoes();
+    carregarConteudoEstacoes();
     
-    // --- Inicialização do sistema de status de doação ---
+    // --- Inicialização do sistema de status de doação (DEPOIS de renderizar o conteúdo)---
     inicializarStatusDoacao();
 
     // --- Fechar painel de notícias ao clicar fora (no overlay) ---
